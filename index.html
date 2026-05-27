@@ -1168,12 +1168,10 @@
     <p class="lead reveal reveal-d2">השאירו פרטים ואחזור אליכם בהקדם לשיחת היכרות ללא עלות.<br>
        נדבר על בית הספר שלכם, על מה שתרצו שהתלמידים ייקחו, ועל איך נבנה ביחד את הסדנה שתשרת אתכם בצורה הטובה ביותר.</p>
 
-    <form class="form-card reveal reveal-d3" id="contactForm" action="https://formsubmit.co/baryagel64@gmail.com" method="POST">
+    <form class="form-card reveal reveal-d3" id="contactForm" action="https://formspree.io/f/mojbyvgp" method="POST">
       <div class="form-success" id="formSuccess">תודה! ההודעה התקבלה — אחזור אליכם בהקדם.</div>
 
       <input type="hidden" name="_subject" value="פניה חדשה — סדנת יזמות מתוך משמעות">
-      <input type="hidden" name="_template" value="table">
-      <input type="hidden" name="_captcha" value="false">
 
       <div class="form-row">
         <div class="form-group">
@@ -1200,7 +1198,7 @@
       <div class="form-row">
         <div class="form-group form-full">
           <label for="email">אימייל</label>
-          <input id="email" name="אימייל" type="email" required>
+          <input id="email" name="email" type="email" required>
         </div>
       </div>
 
@@ -1221,7 +1219,7 @@
 </section>
 
 <footer>
-  <p>© יגל בר · סדנת "יזמות מתוך משמעות" · <a href="mailto:baryagel64@gmail.com">baryagel64@gmail.com</a></p>
+  <p>© יגל בר · סדנת "יזמות מתוך משמעות"</p>
 </footer>
 
 <div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="תצוגת תמונה מלאה">
@@ -1270,6 +1268,39 @@
       video.removeAttribute('controls');
     });
   }
+
+  // CONTACT FORM (Formspree AJAX submission)
+  (function() {
+    const form = document.getElementById('contactForm');
+    if (!form) return;
+    const successEl = document.getElementById('formSuccess');
+    const submitBtn = form.querySelector('.form-submit');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const originalText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.textContent = 'שולח...';
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { 'Accept': 'application/json' }
+        });
+        if (res.ok) {
+          form.querySelectorAll('.form-row, .form-submit, .form-note').forEach(el => el.style.display = 'none');
+          successEl.classList.add('show');
+          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          throw new Error('שגיאה בשליחה');
+        }
+      } catch (err) {
+        alert('משהו השתבש בשליחה. נסו שוב או פנו ישירות במייל.');
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalText;
+      }
+    });
+  })();
 
   // LIGHTBOX
   (function() {
