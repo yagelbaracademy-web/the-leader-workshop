@@ -832,17 +832,64 @@
       margin-top: 14px;
     }
     .form-success {
-      background: rgba(212,168,42,.14);
-      border: 1px solid var(--gold-line);
-      color: var(--gold-warm);
-      padding: 18px 22px;
-      border-radius: 12px;
-      text-align: center;
-      font-weight: 600;
-      margin-bottom: 16px;
       display: none;
+      text-align: center;
+      padding: 48px 24px 40px;
     }
-    .form-success.show { display: block; }
+    .form-success.show {
+      display: block;
+      animation: successFadeIn 0.5s ease both;
+    }
+    .form-success-icon {
+      display: inline-flex;
+      width: 72px;
+      height: 72px;
+      background: var(--gold-soft);
+      border-radius: 50%;
+      color: var(--gold);
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+    .form-success.show .form-success-icon {
+      animation: successPop 0.5s ease 0.15s both;
+    }
+    .form-success h3 {
+      font-size: clamp(28px, 4vw, 34px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin: 0 0 18px;
+      line-height: 1.2;
+    }
+    .form-success-text {
+      font-size: 18px;
+      color: var(--text-mid);
+      line-height: 1.7;
+      margin: 0 auto 28px;
+      max-width: 440px;
+    }
+    .form-success-divider {
+      width: 64px;
+      height: 1px;
+      background: var(--gold-line);
+      margin: 0 auto 18px;
+    }
+    .form-success-signature {
+      font-size: 17px;
+      color: var(--gold-warm);
+      font-weight: 600;
+      margin: 0;
+    }
+    @keyframes successFadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes successPop {
+      0% { opacity: 0; transform: scale(0.4); }
+      60% { transform: scale(1.1); }
+      100% { opacity: 1; transform: scale(1); }
+    }
 
     @media (max-width: 560px) {
       .form-row { grid-template-columns: 1fr; }
@@ -1169,7 +1216,18 @@
        נדבר על בית הספר שלכם, על מה שתרצו שהתלמידים ייקחו, ועל איך נבנה ביחד את הסדנה שתשרת אתכם בצורה הטובה ביותר.</p>
 
     <form class="form-card reveal reveal-d3" id="contactForm" action="https://formspree.io/f/mojbyvgp" method="POST">
-      <div class="form-success" id="formSuccess">תודה! ההודעה התקבלה — אחזור אליכם בהקדם.</div>
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon">
+          <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <path d="M8.5 12.5l2.5 2.5 4.5-5"/>
+          </svg>
+        </div>
+        <h3>תודה רבה!</h3>
+        <p class="form-success-text">קיבלתי את הפנייה שלכם.<br>מחכה לשיחה איתכם בקרוב!</p>
+        <div class="form-success-divider"></div>
+        <p class="form-success-signature">יגל בר</p>
+      </div>
 
       <input type="hidden" name="_subject" value="פניה חדשה — סדנת יזמות מתוך משמעות">
 
