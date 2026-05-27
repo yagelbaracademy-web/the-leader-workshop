@@ -432,6 +432,42 @@
       .root-image { max-width: 380px; margin: 0 auto; }
     }
 
+    .root-evidence {
+      max-width: 1080px;
+      margin: 72px auto 0;
+    }
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .evidence-item {
+      margin: 0;
+      text-align: center;
+    }
+    .evidence-item img {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 14px;
+      box-shadow: 0 14px 32px rgba(0,0,0,.12);
+      display: block;
+    }
+    .evidence-item figcaption {
+      margin-top: 14px;
+      font-size: 14px;
+      color: var(--text-mid);
+      font-weight: 500;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 900px) {
+      .root-evidence { margin-top: 48px; }
+      .evidence-grid { grid-template-columns: 1fr; gap: 28px; }
+      .evidence-item { max-width: 360px; margin: 0 auto; }
+    }
+
     /* TESTIMONIALS */
     #testimonials { background: var(--bg-warm); }
     .section-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
@@ -800,6 +836,23 @@
         <p>מאז "לזכרם" הפך לפלטפורמת הנצחה לאומית — <strong>140 מיליון צפיות באינסטגרם</strong>, אלפי משפחות שכולות שמנציחות בו את יקיריהן, <strong>עשרות אנשי מקצוע וחברות שותפים למיזם</strong>, סיקור תקשורתי נרחב, ושיחות עם תלמידים בכל רחבי הארץ.</p>
         <p>בכל סדנה התחזקה בי יותר ההבנה — <strong>כל בן ובת נוער בישראל יכולים להשפיע.</strong> אם רק מישהו יגיד להם את זה בגובה העיניים, והם יקבלו את הכלים והביטחון שזה אפשרי.</p>
         <div class="root-pullquote">בדיוק לזה הסדנה הזו נולדה.</div>
+      </div>
+    </div>
+
+    <div class="root-evidence reveal">
+      <div class="evidence-grid">
+        <figure class="evidence-item">
+          <img src="images/lezichram-instagram-page.jpg" alt="עמוד 'לזכרם' באינסטגרם">
+          <figcaption>עמוד "לזכרם" באינסטגרם</figcaption>
+        </figure>
+        <figure class="evidence-item">
+          <img src="images/lezichram-installation.jpg" alt="מיצג ההנצחה של 'לזכרם' בטיילת תל אביב">
+          <figcaption>מיצג ההנצחה בטיילת תל אביב</figcaption>
+        </figure>
+        <figure class="evidence-item">
+          <img src="images/lezichram-post-screenshot.jpg" alt="פוסט הנצחה לנופל">
+          <figcaption>פוסט הנצחה לנופל</figcaption>
+        </figure>
       </div>
     </div>
   </div>
