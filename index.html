@@ -352,11 +352,8 @@
       }
       .hero-inner {
         position: absolute;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        padding: 24px 20px 22px;
+        left: 0; right: 0; bottom: 0;
+        padding: 0 20px 22px;
       }
       .hero-ctas .btn {
         padding: 12px 24px;
@@ -646,8 +643,25 @@
 
     @media (max-width: 900px) {
       .root-evidence { margin-top: 48px; }
-      .evidence-grid { grid-template-columns: 1fr; gap: 28px; }
-      .evidence-item { max-width: 360px; margin: 0 auto; }
+      .evidence-grid { grid-template-columns: 1fr; gap: 16px; }
+      .evidence-item {
+        max-width: 100%;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        text-align: right;
+      }
+      .evidence-item img {
+        width: 84px;
+        height: 84px;
+        aspect-ratio: 1 / 1;
+        flex-shrink: 0;
+      }
+      .evidence-item figcaption {
+        margin-top: 0;
+        flex: 1;
+      }
     }
 
     /* TESTIMONIALS */
@@ -1362,8 +1376,7 @@
 <section id="student-voices" class="tight warm">
   <div class="container-wide">
     <div class="section-head reveal">
-      <h2>ומה שהתלמידים כותבים בעצמם</h2>
-      <p>הודעות אמיתיות שתלמידים שלחו אחרי שהשתתפו בסדנה.</p>
+      <h2>מה שתלמידים כתבו לאחר שהשתתפו בסדנה</h2>
     </div>
     <div class="student-voices-grid">
       <figure class="student-voice reveal">
