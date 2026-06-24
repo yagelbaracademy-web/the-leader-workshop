@@ -288,8 +288,6 @@
     section { padding: 96px 0; }
     section.tight { padding: 64px 0; }
     section.warm { background: var(--bg-warm); }
-    section.dark { background: var(--bg-dark); color: var(--white); }
-    section.dark .lead { color: rgba(255,255,255,.78); }
 
     /* NAV */
     nav {
@@ -480,10 +478,7 @@
     .logo-item {
       display: flex; align-items: center; justify-content: center;
       height: 40px;
-      opacity: 0.82;
-      transition: opacity .25s;
     }
-    .logo-item:hover { opacity: 1; }
     .logo-item img { height: 100%; width: auto; object-fit: contain; max-width: 130px; }
     .logo-item-dark img { background: #132544; border-radius: 6px; padding: 6px 10px; height: 28px; }
     .logo-item-mako img { background: #111827; border-radius: 6px; padding: 6px 14px; height: 28px; }
@@ -726,34 +721,37 @@
     .outcome h3 { font-size: 19px; margin-bottom: 10px; }
     .outcome p { font-size: 15px; color: var(--text-mid); line-height: 1.65; }
 
-    /* METHODOLOGY */
-    #methodology { background: var(--bg-dark); color: var(--white); }
-    #methodology .section-head h2 { color: var(--white); }
-    #methodology .section-head p { color: rgba(255,255,255,.72); }
-    .method-grid {
+    /* GOALS */
+    #goals { background: var(--bg); }
+    .goals-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 24px;
-      max-width: var(--max-wide); margin: 0 auto;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px 36px;
+      max-width: 880px;
+      margin: 0 auto;
     }
-    .method-step {
-      background: rgba(255,255,255,.04);
-      border: 1px solid var(--border-soft);
-      border-radius: 18px;
-      padding: 32px 26px;
-      transition: background .25s, transform .25s;
+    .goal {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 16.5px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.5;
     }
-    .method-step:hover { background: rgba(255,255,255,.07); transform: translateY(-3px); }
-    .method-num {
-      font-size: 56px;
-      font-weight: 900;
-      line-height: 1;
-      color: var(--gold-warm);
-      margin-bottom: 14px;
-      letter-spacing: -0.04em;
+    .goal-check {
+      flex-shrink: 0;
+      width: 26px; height: 26px;
+      margin-top: 2px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
     }
-    .method-step h3 { font-size: 18px; color: var(--white); margin-bottom: 8px; }
-    .method-step p { font-size: 14.5px; color: rgba(255,255,255,.75); line-height: 1.6; }
+    .goal-check svg { width: 14px; height: 14px; }
+    @media (max-width: 720px) {
+      .goals-grid { grid-template-columns: 1fr; }
+    }
 
     /* GALLERY */
     #gallery { background: var(--bg-warm); }
@@ -1138,6 +1136,41 @@
   </div>
 </section>
 
+<section id="goals" class="tight">
+  <div class="container-wide">
+    <div class="section-head reveal">
+      <span class="eyebrow">מטרות מרכזיות</span>
+      <h2>מה הסדנה הזו נועדה להשיג</h2>
+    </div>
+    <div class="goals-grid">
+      <div class="goal reveal">
+        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>לעורר אמונה אמיתית שאפשר להוביל ולהשפיע</span>
+      </div>
+      <div class="goal reveal reveal-d1">
+        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>להעניק ארגז כלים יזמי לחוסר ודאות</span>
+      </div>
+      <div class="goal reveal reveal-d2">
+        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>לחזק חוסן מול כישלון ודחייה</span>
+      </div>
+      <div class="goal reveal">
+        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>לחבר לזהות, לערכים ולמשמעות</span>
+      </div>
+      <div class="goal reveal reveal-d1">
+        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>להטמיע מנהיגות מתוך אחריות אישית</span>
+      </div>
+      <div class="goal reveal reveal-d2">
+        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
+        <span>להעניק כלים שנשארים לבגרויות ולצבא</span>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="logos">
   <div class="container">
     <p class="logos-label">סיקרו את המיזם:</p>
@@ -1223,39 +1256,6 @@
       <div class="outcome reveal reveal-d2">
         <h3>חוסן מול כישלון</h3>
         <p>איך לקום אחרי דחיות, להתמודד עם ספקות, ולא לוותר על חזון — הכלי שיישאר איתם בצבא, באוניברסיטה ובחיים.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="methodology" class="dark">
-  <div class="container-wide">
-    <div class="section-head reveal">
-      <span class="eyebrow on-dark">איך זה עובד</span>
-      <h2>4 שלבים. כלים שיישארו איתם לנצח.</h2>
-      <p>הסדנה בנויה כתהליך — מהסיפור, דרך השיח והתרגול, ועד הצעד הקונקרטי שכל תלמיד יוצא איתו.</p>
-    </div>
-
-    <div class="method-grid">
-      <div class="method-step reveal">
-        <div class="method-num">01</div>
-        <h3>הסיפור</h3>
-        <p>אני מתחיל בסיפור האמיתי של "לזכרם" — עם הספקות, עם הנפילות, עם הרגעים שבהם רציתי לוותר. זה פותח לב ומאפשר לתלמידים לראות שאפשר לעשות גם בלי "להיות מיוחד".</p>
-      </div>
-      <div class="method-step reveal reveal-d1">
-        <div class="method-num">02</div>
-        <h3>השיח</h3>
-        <p>שאלות שמכריחות אותם לעצור — מה חשוב לי? מה הכאיב לי פעם? מה הייתי רוצה לשנות בעולם שלי? בגובה העיניים, בלי שיפוטיות.</p>
-      </div>
-      <div class="method-step reveal reveal-d2">
-        <div class="method-num">03</div>
-        <h3>התרגול</h3>
-        <p>קבוצות קטנות, מצב של אי-ודאות אמיתי, משאבים מוגבלים. הם בונים, נופלים, מתקנים — ומגלים בפועל שהם מסוגלים.</p>
-      </div>
-      <div class="method-step reveal reveal-d3">
-        <div class="method-num">04</div>
-        <h3>הצעד</h3>
-        <p>כל תלמיד יוצא עם הצהרה על צעד אחד קטן שיעשה כבר בשבוע הקרוב. כדי להשיג מטרה שחשובה לו.</p>
       </div>
     </div>
   </div>
@@ -1355,7 +1355,7 @@
       <div class="about-content reveal reveal-d1">
         <span class="eyebrow">על המנחה</span>
         <h2>יגל בר</h2>
-        <p class="lead">יזם חברתי, בוגר הטכניון, יוצר תוכן, ומייסד מיזם ההנצחה <strong>"לזכרם"</strong>.</p>
+        <p class="lead">יזם חברתי, בוגר הטכניון, יוצר תוכן, ומייסד מיזם ההנצחה הלאומי <strong>"לזכרם"</strong>.</p>
         <p>ב"לזכרם" יגל חיבר דור שלם של נוער ישראלי לסיפורי הנופלים - דרך אינסטגרם, מיצגים פיזיים, ותכנים שמדברים בגובה העיניים. זיכרון, זהות וערכים - בשפה שלהם.</p>
         <p>כנער, יגל עבר תקופה ארוכה של התמודדויות אישיות שדרשו ממנו ללמוד איך "לבנות את עצמו". יגל לא מלמד רק תיאוריה - הוא מלמד את אותם הכלים והערכים שבעזרתם בנה את <strong>"לזכרם"</strong>. מתוך ניסיון אמיתי.</p>
         <ul class="credentials">
