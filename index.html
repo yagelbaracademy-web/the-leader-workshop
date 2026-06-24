@@ -233,7 +233,7 @@
       --max-xwide: 1280px;
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; width: 100%; }
 
     body {
       font-family: 'Heebo', system-ui, -apple-system, sans-serif;
@@ -1141,8 +1141,10 @@
 
       if (isMobile) {
         var hero = document.getElementById('hero');
+        hero.style.width = '100%';
         var setHeight = function() {
-          hero.style.height = Math.round(hero.getBoundingClientRect().width * 4 / 3) + 'px';
+          var w = document.documentElement.clientWidth;
+          hero.style.height = Math.round(w * 4 / 3 + 200) + 'px';
         };
         setHeight();
         window.addEventListener('resize', setHeight);
