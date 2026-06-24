@@ -700,6 +700,30 @@
       line-height: 1.4;
     }
 
+    /* STUDENT VOICES */
+    .student-voices-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      max-width: var(--max-wide); margin: 0 auto;
+    }
+    .student-voice {
+      margin: 0;
+      background: var(--white);
+      border-radius: 16px;
+      padding: 10px;
+      box-shadow: 0 8px 24px rgba(0,0,0,.08), 0 0 0 1px var(--border);
+    }
+    .student-voice img {
+      width: 100%;
+      height: auto;
+      border-radius: 10px;
+      display: block;
+    }
+    @media (max-width: 900px) {
+      .student-voices-grid { grid-template-columns: 1fr; max-width: 480px; margin: 0 auto; }
+    }
+
     /* OUTCOMES */
     #outcomes { background: var(--bg); }
     .outcomes-grid {
@@ -1315,6 +1339,27 @@
         </div>
       </article>
 
+    </div>
+  </div>
+</section>
+
+<section id="student-voices" class="tight warm">
+  <div class="container-wide">
+    <div class="section-head reveal">
+      <span class="eyebrow">בקול שלהם</span>
+      <h2>ומה שהתלמידים כותבים בעצמם</h2>
+      <p>הודעות אמיתיות שתלמידים שלחו ליגל אחרי הרצאות וסדנאות - בלי שביקש.</p>
+    </div>
+    <div class="student-voices-grid">
+      <figure class="student-voice reveal">
+        <img src="images/student-note-keepgoing.jpg" alt="הודעת תלמיד: תליתי על הלוח את הסטיקר שחילקת בסדנה, Just Keep Going" loading="lazy">
+      </figure>
+      <figure class="student-voice reveal reveal-d1">
+        <img src="images/student-note-inspired.jpg" alt="הודעת תלמיד: אני מאמין שתגיע רחוק מאוד בתור יזם, נתת לי הרבה השראה" loading="lazy">
+      </figure>
+      <figure class="student-voice reveal reveal-d2">
+        <img src="images/student-note-king.jpg" alt="הודעת תלמיד: יגל, אתה מלך! כשאגדל אני רוצה להיות כמוך" loading="lazy">
+      </figure>
     </div>
   </div>
 </section>
