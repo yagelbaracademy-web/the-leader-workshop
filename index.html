@@ -378,43 +378,20 @@
       position: relative; z-index: 2;
       max-width: 760px; margin: 0 auto;
     }
-    .hero-text h1, .hero-tags {
+    .hero-text h1, .hero-meta {
       text-shadow: 0 2px 16px rgba(0,0,0,.45);
     }
     .hero-text { text-align: right; }
-    .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin: 0 0 22px;
-    }
-    .gefen-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: #10B981;
-      color: var(--white);
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: -0.005em;
-      box-shadow:
-        0 0 0 4px rgba(16,185,129,.18),
-        0 0 36px rgba(16,185,129,.55),
-        0 10px 28px rgba(0,0,0,.28);
-    }
-    .gefen-badge svg { width: 14px; height: 14px; stroke-width: 3; }
-    .audience-tag {
-      display: inline-flex; align-items: center;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.14);
-      color: rgba(255,255,255,.82);
-      padding: 7px 14px;
-      border-radius: 100px;
-      font-size: 12.5px;
-      font-weight: 600;
-    }
-    .audience-tag .dot { margin: 0 7px; color: rgba(255,255,255,.35); }
     #hero h1 {
       color: var(--white);
       margin: 0 0 16px;
+    }
+    .hero-meta {
+      font-size: clamp(15px, 1.6vw, 17px);
+      font-weight: 700;
+      color: #34E1A1;
+      text-shadow: 0 0 14px rgba(52,225,161,.65), 0 2px 16px rgba(0,0,0,.45);
+      margin: 0 0 28px;
     }
     #hero h1 .accent { color: var(--gold-warm); }
     .hero-ctas {
@@ -805,14 +782,8 @@
       display: flex; align-items: center; justify-content: center;
     }
     .goal-check svg { width: 14px; height: 14px; }
-    .goal-full {
-      grid-column: 1 / -1;
-      justify-content: center;
-      font-weight: 700;
-    }
     @media (max-width: 720px) {
       .goals-grid { grid-template-columns: 1fr; }
-      .goal-full { justify-content: flex-start; font-weight: 600; }
     }
 
     /* GALLERY */
@@ -1188,17 +1159,9 @@
     <div class="hero-text">
       <h1 class="reveal in reveal-d2">
         בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
-        עכשיו אני מלמד את התלמידים איך גם הם יכולים להשפיע.
+        עכשיו אני מלמד את התלמידים איך גם הם יכולים להשפיע
       </h1>
-      <div class="hero-tags reveal in">
-        <div class="audience-tag">
-          חטיבה<span class="dot">·</span>תיכון
-        </div>
-        <div class="gefen-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          מאושר למימון תקציב גפ"ן
-        </div>
-      </div>
+      <p class="hero-meta reveal in">סדנה לתלמידי חטיבה, תיכון | תוכנית רשומה בגפ"ן</p>
       <div class="hero-ctas reveal in reveal-d4">
         <a href="#cta" class="btn btn-primary">בואו נדבר
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -1211,28 +1174,24 @@
 <section id="goals" class="tight">
   <div class="container-wide">
     <div class="section-head reveal">
-      <h2>מה הסדנה הזו נועדה להשיג</h2>
+      <h2>מטרות הסדנה</h2>
     </div>
     <div class="goals-grid">
       <div class="goal reveal">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>לעורר אמונה אמיתית שאפשר להוביל ולהשפיע</span>
+        <span>לחזק חוסן בהתמודדות עם אתגרים וכישלונות</span>
       </div>
       <div class="goal reveal reveal-d1">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>לחזק חוסן בהתמודדות עם אתגרים וכישלונות</span>
+        <span>לחבר לזהות, לערכים ולמשמעות (מציאת ה"למה" שלנו)</span>
       </div>
       <div class="goal reveal reveal-d2">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>לחבר לזהות, לערכים ולמשמעות</span>
+        <span>ללמד מנהיגות מתוך אחריות אישית, ולחזק יכולות עבודה בצוות</span>
       </div>
       <div class="goal reveal">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>להטמיע מנהיגות מתוך אחריות אישית, ולחזק יכולות עבודה בצוות</span>
-      </div>
-      <div class="goal goal-full reveal reveal-d1">
-        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>להעניק לתלמידים כלים שילוו אותם כל החיים</span>
+        <span>להעניק לתלמידים כלים חשובים שילוו אותם כל החיים</span>
       </div>
     </div>
   </div>
