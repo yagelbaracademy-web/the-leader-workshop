@@ -267,19 +267,8 @@
     .reveal-d3 { transition-delay: .24s; }
     .reveal-d4 { transition-delay: .32s; }
 
-    .eyebrow {
-      display: inline-block;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 1.2px;
-      color: var(--gold);
-      text-transform: uppercase;
-      margin-bottom: 16px;
-    }
-    .eyebrow.on-dark { color: var(--gold-warm); }
-
     h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
-    h1 { font-size: clamp(28px, 3.8vw, 46px); font-weight: 900; line-height: 1.18; }
+    h1 { font-size: clamp(23px, 3.4vw, 46px); font-weight: 900; line-height: 1.2; }
     h2 { font-size: clamp(28px, 4vw, 44px); }
     h3 { font-size: clamp(20px, 2.4vw, 26px); }
 
@@ -398,7 +387,7 @@
     .hero-text { text-align: right; }
     .hero-tags {
       display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 22px;
+      margin: 0 0 22px;
     }
     .gefen-badge {
       display: inline-flex; align-items: center; gap: 7px;
@@ -428,7 +417,7 @@
     .audience-tag .dot { margin: 0 7px; color: rgba(255,255,255,.35); }
     #hero h1 {
       color: var(--white);
-      margin: 0;
+      margin: 0 0 16px;
     }
     #hero h1 .accent { color: var(--gold-warm); }
     .hero-ctas {
@@ -1183,6 +1172,10 @@
   </script>
   <div class="hero-inner">
     <div class="hero-text">
+      <h1 class="reveal in reveal-d2">
+        בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
+        עכשיו אני מלמד את התלמידים איך גם הם יכולים להשפיע.
+      </h1>
       <div class="hero-tags reveal in">
         <div class="audience-tag">
           חטיבה<span class="dot">·</span>תיכון
@@ -1192,10 +1185,6 @@
           מאושר למימון תקציב גפ"ן
         </div>
       </div>
-      <h1 class="reveal in reveal-d2">
-        בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
-        עכשיו אני מלמד את התלמידים איך גם הם יכולים להשפיע.
-      </h1>
       <div class="hero-ctas reveal in reveal-d4">
         <a href="#cta" class="btn btn-primary">בואו נדבר
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
@@ -1208,7 +1197,6 @@
 <section id="goals" class="tight">
   <div class="container-wide">
     <div class="section-head reveal">
-      <span class="eyebrow">מטרות מרכזיות</span>
       <h2>מה הסדנה הזו נועדה להשיג</h2>
     </div>
     <div class="goals-grid">
@@ -1260,7 +1248,6 @@
         <img src="images/yagel-lezichram-stage.png" alt="יגל בר מציג את מיזם לזכרם">
       </div>
       <div class="root-content reveal reveal-d1">
-        <span class="eyebrow">איך הכל התחיל</span>
         <h2>בגיל 21, הבנתי שמשהו לא עובד.</h2>
         <p><strong>כל כלי שהתלמידים מקבלים בסדנה - השתמשתי בו בעצמי כדי להקים את "לזכרם".</strong></p>
         <p>היו לנו טקסים ביום הזיכרון ואתרי הנצחה, אבל לא דרך לזכור את הנופלים בחיי היום-יום - בשפה של הדור הצעיר שחי ברשתות החברתיות. אז בלי תקציב, בלי ניסיון ובלי ודאות שזה יעבוד, הקמתי את <strong>"לזכרם"</strong> - עמוד אינסטגרם שבו מונצחים <strong>מעל 20,000 נופלים</strong>, פוסט אחד לכל סיפור, ו<strong>מיצגי הנצחה פיזיים</strong> שהצבנו במקומות מרכזיים בארץ.</p>
@@ -1287,47 +1274,9 @@
     </div>
   </div>
 </section>
-<section id="outcomes">
-  <div class="container-wide">
-    <div class="section-head reveal">
-      <span class="eyebrow">מה הם לוקחים איתם</span>
-      <h2>תוצאות שיישארו איתם הרבה אחרי שהסדנה תיגמר</h2>
-      <p>הסדנה "יזמות מתוך משמעות" מעניקה לתלמידים ארגז כלים, אמונה ומסוגלות שיתלוו אליהם לבגרויות, לצבא ולחיים.</p>
-    </div>
-
-    <div class="outcomes-grid">
-      <div class="outcome reveal">
-        <h3>מציאת ה"למה"</h3>
-        <p>התלמידים לומדים לזהות צורך, כאב או ערך — ולהפוך אותם לרעיון שמניע פעולה אמיתית.</p>
-      </div>
-      <div class="outcome reveal reveal-d1">
-        <h3>ארגז כלים יזמי</h3>
-        <p>חשיבה יצירתית, פתרון בעיות, קבלת החלטות בחוסר ודאות ועבודת צוות — כלים מעשיים שמלווים אותם הלאה.</p>
-      </div>
-      <div class="outcome reveal reveal-d2">
-        <h3>מנהיגות מתוך אחריות</h3>
-        <p>ההבנה שמנהיגות לא מתחילה מתפקיד — היא מתחילה מאחריות. ושאפשר להוביל מכל מקום שאתה נמצא בו.</p>
-      </div>
-      <div class="outcome reveal">
-        <h3>תחושת מסוגלות אמיתית</h3>
-        <p>"אני יכול להשפיע" לא כסיסמה — כהבנה עמוקה שמגיעה אחרי שראו דוגמה אמיתית במו עיניהם.</p>
-      </div>
-      <div class="outcome reveal reveal-d1">
-        <h3>חיבור לזהות ולערכים</h3>
-        <p>אחריות אישית וחברתית, אמפתיה והקשבה, חיבור לזיכרון ולערכי החברה הישראלית.</p>
-      </div>
-      <div class="outcome reveal reveal-d2">
-        <h3>חוסן מול כישלון</h3>
-        <p>איך לקום אחרי דחיות, להתמודד עם ספקות, ולא לוותר על חזון — הכלי שיישאר איתם בצבא, באוניברסיטה ובחיים.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <section id="testimonials">
   <div class="container-wide">
     <div class="section-head reveal">
-      <span class="eyebrow">המלצות</span>
       <h2>המלצות חמות מבתי הספר שכבר חוו את הסדנה</h2>
       <p>ממנהלים, רכזים וראשי מסגרות חינוכיות</p>
     </div>
@@ -1374,12 +1323,47 @@
   </div>
 </section>
 
+<section id="outcomes">
+  <div class="container-wide">
+    <div class="section-head reveal">
+      <h2>תוצאות שיישארו איתם הרבה אחרי שהסדנה תיגמר</h2>
+      <p>הסדנה "יזמות מתוך משמעות" מעניקה לתלמידים ארגז כלים, אמונה ומסוגלות שיתלוו אליהם לבגרויות, לצבא ולחיים.</p>
+    </div>
+
+    <div class="outcomes-grid">
+      <div class="outcome reveal">
+        <h3>מציאת ה"למה"</h3>
+        <p>התלמידים לומדים לזהות צורך, כאב או ערך — ולהפוך אותם לרעיון שמניע פעולה אמיתית.</p>
+      </div>
+      <div class="outcome reveal reveal-d1">
+        <h3>ארגז כלים יזמי</h3>
+        <p>חשיבה יצירתית, פתרון בעיות, קבלת החלטות בחוסר ודאות ועבודת צוות — כלים מעשיים שמלווים אותם הלאה.</p>
+      </div>
+      <div class="outcome reveal reveal-d2">
+        <h3>מנהיגות מתוך אחריות</h3>
+        <p>ההבנה שמנהיגות לא מתחילה מתפקיד — היא מתחילה מאחריות. ושאפשר להוביל מכל מקום שאתה נמצא בו.</p>
+      </div>
+      <div class="outcome reveal">
+        <h3>תחושת מסוגלות אמיתית</h3>
+        <p>"אני יכול להשפיע" לא כסיסמה — כהבנה עמוקה שמגיעה אחרי שראו דוגמה אמיתית במו עיניהם.</p>
+      </div>
+      <div class="outcome reveal reveal-d1">
+        <h3>חיבור לזהות ולערכים</h3>
+        <p>אחריות אישית וחברתית, אמפתיה והקשבה, חיבור לזיכרון ולערכי החברה הישראלית.</p>
+      </div>
+      <div class="outcome reveal reveal-d2">
+        <h3>חוסן מול כישלון</h3>
+        <p>איך לקום אחרי דחיות, להתמודד עם ספקות, ולא לוותר על חזון — הכלי שיישאר איתם בצבא, באוניברסיטה ובחיים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="student-voices" class="tight warm">
   <div class="container-wide">
     <div class="section-head reveal">
-      <span class="eyebrow">בקול שלהם</span>
       <h2>ומה שהתלמידים כותבים בעצמם</h2>
-      <p>הודעות אמיתיות שתלמידים שלחו ליגל אחרי הרצאות וסדנאות - בלי שביקש.</p>
+      <p>הודעות אמיתיות שתלמידים שלחו אחרי שהשתתפו בסדנה.</p>
     </div>
     <div class="student-voices-grid">
       <figure class="student-voice reveal">
@@ -1397,7 +1381,6 @@
 
 <section id="video">
   <div class="container">
-    <span class="eyebrow reveal">ראיון ב-i24 NEWS</span>
     <h2 class="reveal reveal-d1">אירוע "רצים לזכרם" — יום הזיכרון 2026</h2>
     <p class="reveal reveal-d2 lead">ראיון על מפגש שיזמתי במסגרת "לזכרם" ביום הזיכרון 2026.</p>
     <div class="video-wrap reveal reveal-d3">
@@ -1415,7 +1398,6 @@
 <section id="gallery">
   <div class="container-wide">
     <div class="section-head reveal">
-      <span class="eyebrow">בשטח</span>
       <h2>הסדנה בפעולה</h2>
       <p>רגעים מהסדנאות האחרונות — אולמות מלאים, קבוצות עבודה, ופנים שאומרת יותר ממילים.</p>
     </div>
@@ -1437,7 +1419,6 @@
         <img src="images/yagel-headshot.PNG" alt="יגל בר">
       </div>
       <div class="about-content reveal reveal-d1">
-        <span class="eyebrow">על המנחה</span>
         <h2>יגל בר</h2>
         <p class="lead">יזם חברתי, בוגר הטכניון, יוצר תוכן, ומייסד מיזם ההנצחה הלאומי <strong>"לזכרם"</strong>.</p>
         <p>כנער, יגל עבר תקופה ארוכה של התמודדויות אישיות שדרשו ממנו ללמוד איך "לבנות את עצמו". יגל לא מלמד רק תיאוריה - הוא מלמד את אותם הכלים והערכים שבעזרתם בנה את <strong>"לזכרם"</strong>. מתוך ניסיון אמיתי.</p>
@@ -1456,7 +1437,6 @@
 <section id="faq">
   <div class="container-wide">
     <div class="section-head reveal">
-      <span class="eyebrow">שאלות נפוצות</span>
       <h2>כל מה שכדאי לדעת לפני שמתאמים</h2>
     </div>
 
@@ -1506,7 +1486,6 @@
 
 <section id="cta">
   <div class="container">
-    <span class="eyebrow on-dark reveal">בואו נדבר</span>
     <h2 class="reveal reveal-d1">אם אתם פה — סימן שמשהו זז בכם.</h2>
     <p class="lead reveal reveal-d2">השאירו פרטים ואחזור אליכם בהקדם לשיחת היכרות ללא עלות.<br>
        נדבר על בית הספר שלכם, על מה שתרצו שהתלמידים ייקחו, ועל איך נבנה ביחד את הסדנה שתשרת אתכם בצורה הטובה ביותר.</p>
