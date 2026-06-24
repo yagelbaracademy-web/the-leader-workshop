@@ -343,7 +343,7 @@
         min-height: 0;
         padding: 0;
         margin-top: 76px;
-        aspect-ratio: 3 / 4;
+        aspect-ratio: 1 / 1;
         display: block;
       }
       .hero-video {
@@ -739,6 +739,9 @@
 
     /* GOALS */
     #goals { background: var(--bg); }
+    @media (max-width: 720px) {
+      #goals { padding-top: 28px; }
+    }
     .goals-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
