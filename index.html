@@ -789,8 +789,14 @@
       display: flex; align-items: center; justify-content: center;
     }
     .goal-check svg { width: 14px; height: 14px; }
+    .goal-full {
+      grid-column: 1 / -1;
+      justify-content: center;
+      font-weight: 700;
+    }
     @media (max-width: 720px) {
       .goals-grid { grid-template-columns: 1fr; }
+      .goal-full { justify-content: flex-start; font-weight: 600; }
     }
 
     /* GALLERY */
@@ -1190,21 +1196,17 @@
       </div>
       <div class="goal reveal reveal-d1">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>לעודד יכולת עבודה בצוות ובקבוצה</span>
-      </div>
-      <div class="goal reveal reveal-d2">
-        <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
         <span>לחזק חוסן בהתמודדות עם אתגרים וכישלונות</span>
       </div>
-      <div class="goal reveal">
+      <div class="goal reveal reveal-d2">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
         <span>לחבר לזהות, לערכים ולמשמעות</span>
       </div>
-      <div class="goal reveal reveal-d1">
+      <div class="goal reveal">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
-        <span>להטמיע מנהיגות מתוך אחריות אישית</span>
+        <span>להטמיע מנהיגות מתוך אחריות אישית, ולחזק יכולות עבודה בצוות</span>
       </div>
-      <div class="goal reveal reveal-d2">
+      <div class="goal goal-full reveal reveal-d1">
         <span class="goal-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></span>
         <span>להעניק לתלמידים כלים שילוו אותם כל החיים</span>
       </div>
