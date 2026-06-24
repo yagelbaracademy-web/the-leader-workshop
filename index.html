@@ -1129,7 +1129,8 @@
   <script>
     (function() {
       var v = document.getElementById('heroVideo');
-      var src = window.innerWidth <= 720 ? 'images/hero-loop-mobile.mp4' : 'images/hero-loop.mp4';
+      var isMobile = window.innerWidth <= 720;
+      var src = isMobile ? 'images/hero-loop-mobile.mp4' : 'images/hero-loop.mp4';
       var s = document.createElement('source');
       s.src = src;
       s.type = 'video/mp4';
@@ -1137,6 +1138,15 @@
       v.load();
       var p = v.play();
       if (p && p.catch) p.catch(function() {});
+
+      if (isMobile) {
+        var hero = document.getElementById('hero');
+        var setHeight = function() {
+          hero.style.height = Math.round(hero.getBoundingClientRect().width * 4 / 3) + 'px';
+        };
+        setHeight();
+        window.addEventListener('resize', setHeight);
+      }
     })();
   </script>
   <div class="hero-inner">
