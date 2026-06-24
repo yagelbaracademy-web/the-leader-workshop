@@ -351,13 +351,26 @@
     }
     @media (max-width: 720px) {
       #hero {
-        min-height: 82vh;
-        align-items: flex-end;
-        padding: 130px 20px 56px;
+        min-height: 0;
+        padding: 0;
+        aspect-ratio: 3 / 4;
+        display: block;
       }
       .hero-video {
-        object-fit: contain;
+        object-fit: cover;
         object-position: center center;
+      }
+      .hero-inner {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        padding: 110px 20px 22px;
+      }
+      .hero-ctas .btn {
+        padding: 12px 24px;
+        font-size: 14px;
       }
     }
     #hero::before {
@@ -378,45 +391,22 @@
       position: relative; z-index: 2;
       max-width: 760px; margin: 0 auto;
     }
-    .hero-text h1, .hero-tags {
+    .hero-text h1, .hero-meta {
       text-shadow: 0 2px 16px rgba(0,0,0,.45);
     }
     .hero-text { text-align: right; }
-    .hero-tags {
-      display: flex; flex-wrap: wrap; gap: 8px;
-      margin-bottom: 28px;
-    }
-    .gefen-badge {
-      display: inline-flex; align-items: center; gap: 7px;
-      background: #10B981;
-      color: var(--white);
-      padding: 10px 18px;
-      border-radius: 100px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: -0.005em;
-      box-shadow:
-        0 0 0 4px rgba(16,185,129,.18),
-        0 0 36px rgba(16,185,129,.55),
-        0 10px 28px rgba(0,0,0,.28);
-    }
-    .gefen-badge svg { width: 14px; height: 14px; stroke-width: 3; }
-    .audience-tag {
-      display: inline-flex; align-items: center;
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.14);
-      color: rgba(255,255,255,.82);
-      padding: 7px 14px;
-      border-radius: 100px;
-      font-size: 12.5px;
-      font-weight: 600;
-    }
-    .audience-tag .dot { margin: 0 7px; color: rgba(255,255,255,.35); }
     #hero h1 {
       color: var(--white);
-      margin: 0 0 32px;
+      margin: 0 0 16px;
     }
     #hero h1 .accent { color: var(--gold-warm); }
+    .hero-meta {
+      font-size: clamp(15px, 1.6vw, 17px);
+      color: rgba(255,255,255,.85);
+      font-weight: 600;
+      margin: 0 0 28px;
+    }
+    .hero-meta strong { color: var(--gold-warm); }
     .hero-ctas {
       display: flex; gap: 14px; flex-wrap: wrap;
     }
@@ -1168,19 +1158,11 @@
   </script>
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-tags reveal in">
-        <div class="audience-tag">
-          חטיבה<span class="dot">·</span>תיכון
-        </div>
-        <div class="gefen-badge">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-          מאושר למימון תקציב גפ"ן
-        </div>
-      </div>
       <h1 class="reveal in reveal-d2">
         בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
-        עכשיו אני מלמד את התלמידים איך גם הם יכולים לשנות.
+        עכשיו אני מלמד את התלמידים איך גם הם יכולים להשפיע.
       </h1>
+      <p class="hero-meta reveal in reveal-d3">סדנה לתלמידי חטיבה ותיכון · <strong>מאושרת למימון גפ"ן</strong></p>
       <div class="hero-ctas reveal in reveal-d4">
         <a href="#cta" class="btn btn-primary">בואו נדבר
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="15 18 9 12 15 6"/></svg>
