@@ -1,6 +1,14 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6SPK5FPM5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-L6SPK5FPM5');
+  </script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>סדנת יזמות מתוך משמעות | יגל בר – סדנה לחטיבה ותיכון, מאושרת גפ"ן</title>
@@ -9,7 +17,7 @@
   <meta name="author" content="יגל בר">
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
   <meta name="googlebot" content="index, follow">
-  <meta name="theme-color" content="#2A5BA8">
+  <meta name="theme-color" content="#1F4742">
 
   <meta name="geo.region" content="IL">
   <meta name="geo.placename" content="Israel">
@@ -205,8 +213,8 @@
     :root {
       --bg:        #FAFAF8;
       --bg-warm:   #F5F2EE;
-      --bg-dark:   #2A5BA8;
-      --bg-dark-2: #1E4596;
+      --bg-dark:   #1F4742;
+      --bg-dark-2: #14302C;
       --text:      #111111;
       --text-mid:  #444444;
       --text-soft: #888888;
@@ -322,7 +330,10 @@
     #hero {
       position: relative;
       padding: 160px 24px 96px;
-      background: linear-gradient(180deg, #1E4596 0%, #2A5BA8 60%, #3070BC 100%);
+      background-image: url('images/hero-bg.jpg');
+      background-size: cover;
+      background-position: center 22%;
+      background-repeat: no-repeat;
       color: var(--white);
       overflow: hidden;
     }
@@ -330,49 +341,26 @@
       content: '';
       position: absolute; inset: 0;
       background:
-        radial-gradient(900px 600px at 80% 10%, rgba(212,168,42,.18), transparent 60%),
-        radial-gradient(700px 500px at 10% 90%, rgba(212,168,42,.10), transparent 60%);
+        radial-gradient(900px 600px at 80% 10%, rgba(212,168,42,.16), transparent 60%),
+        radial-gradient(700px 500px at 10% 90%, rgba(212,168,42,.08), transparent 60%),
+        linear-gradient(180deg, rgba(20,48,44,.93) 0%, rgba(20,48,44,.82) 45%, rgba(31,71,66,.80) 100%);
       pointer-events: none;
+    }
+    @media (max-width: 720px) {
+      #hero {
+        background-position: 65% 18%;
+        background-size: 220% auto;
+      }
     }
     .hero-inner {
       position: relative; z-index: 2;
-      max-width: var(--max-wide); margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.5fr 1fr;
-      gap: 64px;
-      align-items: center;
+      max-width: 760px; margin: 0 auto;
     }
     .hero-text { text-align: right; }
-    .hero-image {
-      position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      aspect-ratio: 4 / 5;
-      box-shadow: 0 25px 70px rgba(0,0,0,.45);
-      border: 1px solid rgba(255,255,255,.08);
-    }
-    .hero-image img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      object-position: 60% 30%;
-    }
-    .hero-image::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 60%, rgba(10,14,26,.45) 100%);
-      pointer-events: none;
-    }
     .hero-tags {
       display: flex; flex-wrap: wrap; gap: 8px;
       margin-bottom: 28px;
     }
-    .hero-image-col {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 18px;
-    }
-    .hero-image-col .hero-image { width: 100%; }
     .gefen-badge {
       display: inline-flex; align-items: center; gap: 7px;
       background: #10B981;
@@ -388,9 +376,6 @@
         0 10px 28px rgba(0,0,0,.28);
     }
     .gefen-badge svg { width: 14px; height: 14px; stroke-width: 3; }
-    @media (max-width: 900px) {
-      .hero-image-col { align-items: center; }
-    }
     .audience-tag {
       display: inline-flex; align-items: center;
       background: rgba(255,255,255,.05);
@@ -407,13 +392,6 @@
       margin: 0 0 14px;
     }
     #hero h1 .accent { color: var(--gold-warm); }
-    .hero-name {
-      font-size: clamp(14.5px, 1.5vw, 16.5px);
-      color: rgba(255,255,255,.78);
-      margin: 0 0 26px;
-      font-weight: 500;
-      letter-spacing: 0.01em;
-    }
     #hero .hero-sub {
       font-size: clamp(16.5px, 1.8vw, 19.5px);
       color: rgba(255,255,255,.82);
@@ -424,10 +402,8 @@
       display: flex; gap: 14px; flex-wrap: wrap;
     }
     @media (max-width: 900px) {
-      .hero-inner { grid-template-columns: 1fr; gap: 40px; }
       .hero-text { text-align: center; }
       .hero-ctas { justify-content: center; }
-      .hero-image { max-width: 340px; margin: 0 auto; }
     }
     .btn {
       display: inline-flex; align-items: center; gap: 8px;
@@ -481,29 +457,29 @@
     #logos { padding: 56px 0; background: var(--white); border-bottom: 1px solid var(--border); }
     .logos-label {
       text-align: center;
-      font-size: 13px;
+      font-size: 12px;
       color: var(--text-soft);
       font-weight: 600;
-      letter-spacing: 1px;
+      letter-spacing: 1.5px;
       text-transform: uppercase;
-      margin-bottom: 28px;
+      margin-bottom: 36px;
     }
     .logos-grid {
       display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
-      gap: 18px 24px;
-      max-width: 980px;
+      gap: 24px 52px;
+      max-width: 860px;
       margin: 0 auto;
     }
     .logo-item {
-      font-weight: 700;
-      color: var(--text-mid);
-      font-size: 15px;
-      padding: 10px 18px;
-      background: var(--bg-warm);
-      border-radius: 10px;
-      transition: transform .2s, color .2s;
+      display: flex; align-items: center; justify-content: center;
+      height: 40px;
+      opacity: 0.82;
+      transition: opacity .25s;
     }
-    .logo-item:hover { color: var(--text); transform: translateY(-2px); }
+    .logo-item:hover { opacity: 1; }
+    .logo-item img { height: 100%; width: auto; object-fit: contain; max-width: 130px; }
+    .logo-item-dark img { background: #132544; border-radius: 6px; padding: 6px 10px; height: 28px; }
+    .logo-item-mako img { background: #111827; border-radius: 6px; padding: 6px 14px; height: 28px; }
 
     /* VIDEO */
     #video { background: var(--bg-warm); text-align: center; }
@@ -659,6 +635,26 @@
     .section-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
     .section-head h2 { margin-bottom: 16px; }
     .section-head p { color: var(--text-mid); }
+
+    .school-logos-strip {
+      display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+      gap: 18px;
+      max-width: 720px;
+      margin: -16px auto 48px;
+    }
+    .school-logos-strip img {
+      height: 64px;
+      width: auto;
+      max-width: 160px;
+      object-fit: contain;
+      background: var(--white);
+      border-radius: 12px;
+      padding: 10px 18px;
+      box-shadow: 0 4px 16px rgba(0,0,0,.06), 0 0 0 1px var(--border);
+    }
+    @media (max-width: 720px) {
+      .school-logos-strip img { height: 50px; padding: 8px 14px; }
+    }
 
     .testimonials-grid {
       display: grid;
@@ -963,7 +959,7 @@
 
     /* CTA + FORM */
     #cta {
-      background: linear-gradient(180deg, #1E4596 0%, #2D6BB8 100%);
+      background: linear-gradient(180deg, #14302C 0%, #2C5C54 100%);
       color: var(--white);
     }
     #cta .container { max-width: 760px; text-align: center; }
@@ -1035,7 +1031,7 @@
       height: 92px;
       background: var(--gold);
       border-radius: 50%;
-      color: #1E4596;
+      color: #14302C;
       align-items: center;
       justify-content: center;
       margin-bottom: 30px;
@@ -1121,18 +1117,19 @@
     <div class="hero-text">
       <div class="hero-tags reveal in">
         <div class="audience-tag">
-          תיכון<span class="dot">·</span>חטיבה<span class="dot">·</span>ועוד
+          חטיבה<span class="dot">·</span>תיכון
+        </div>
+        <div class="gefen-badge">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+          מאושר למימון תקציב גפ"ן
         </div>
       </div>
       <h1 class="reveal in reveal-d2">
         בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
         עכשיו אני מלמד את התלמידים איך גם הם יכולים לשנות.
       </h1>
-      <p class="hero-name reveal in reveal-d2">
-        יגל בר, מייסד מיזם "לזכרם", בוגר הטכניון, מנחה סדנאות
-      </p>
       <p class="hero-sub reveal in reveal-d3">
-        בסדנת "יזמות מתוך משמעות" התלמידים לומדים להתמודד עם אתגרים וכישלונות, לעבוד בשיתוף פעולה, ויוצאים מחוזקים באמונה שגם הם יכולים להוביל, ליזום ולהשפיע. כלים שיישארו איתם לחיים ולשירות הצבאי.
+        התלמידים לומדים להתמודד עם אתגרים, לשתף פעולה ולהוביל - ויוצאים עם ביטחון אמיתי שהם יכולים להשפיע. כלים שיישארו איתם לחיים ולצבא.
       </p>
       <div class="hero-ctas reveal in reveal-d4">
         <a href="#cta" class="btn btn-primary">בואו נדבר
@@ -1141,18 +1138,62 @@
         <a href="#root" class="btn btn-ghost">צפו בסיפור</a>
       </div>
     </div>
-    <div class="hero-image-col reveal in reveal-d2">
-      <div class="gefen-badge">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-        מאושר למימון תקציב גפ"ן
-      </div>
-      <div class="hero-image">
-        <img src="images/yagel-lecture.jpg" alt="יגל בר מעביר סדנה">
-      </div>
+  </div>
+</section>
+
+<section id="logos">
+  <div class="container">
+    <p class="logos-label">לזכרם — כפי שסוקר ב:</p>
+    <div class="logos-grid">
+      <span class="logo-item logo-item-mako"><img src="images/logo-mako.png" alt="מאקו" loading="lazy"></span>
+      <span class="logo-item"><img src="images/logo-ynet.gif" alt="ynet" loading="lazy"></span>
+      <span class="logo-item logo-item-dark"><img src="images/logo-i24.svg" alt="i24 NEWS" loading="lazy"></span>
+      <span class="logo-item"><img src="images/logo-ice.png" alt="ice" loading="lazy"></span>
     </div>
   </div>
 </section>
 
+<section id="root">
+  <div class="container-wide">
+    <div class="bereaved-quote reveal">
+      <span class="bereaved-mark">&ldquo;</span>
+      <p class="bereaved-text">לקחת את המושג "חלל" שהוא ריק וכלום, והכנסת בו חיים. אתה פשוט הבאת את הגאולה.</p>
+      <p class="bereaved-attribution">— נאוה, אמו של עמית בן יגאל ז"ל</p>
+    </div>
+    <div class="root-grid">
+      <div class="root-image reveal">
+        <img src="images/yagel-lezichram-stage.png" alt="יגל בר מציג את מיזם לזכרם">
+      </div>
+      <div class="root-content reveal reveal-d1">
+        <span class="eyebrow">איך הכל התחיל</span>
+        <h2>בגיל 21, הבנתי שמשהו לא עובד.</h2>
+        <p><strong>כל כלי שהתלמידים מקבלים בסדנה - השתמשתי בו בעצמי כדי להקים את "לזכרם".</strong></p>
+        <p>יש לנו טקסים מרגשים ביום הזיכרון, יש אתרי אינטרנט להנצחה, אבל אין דרך נגישה לזכור את הנופלים בחיי היום-יום. <strong>לא הייתה פלטפורמה שמחברת את הדור הצעיר — שמבלה את רוב זמנו ברשתות החברתיות — לסיפורי הגבורה של מי שהקריבו את חייהם כדי שנוכל לחיות כאן.</strong></p>
+        <p>אז התחלתי לבנות משהו. בלי תקציב, בלי ניסיון, בלי ודאות שזה יעבוד. הקמתי את <strong>"לזכרם"</strong> - מיזם ההנצחה שמחבר את הזיכרון לדור הצעיר - דרך עמוד האינסטגרם המרכזי בו מונצחים <strong>מעל 20,000 נופלים</strong> — לכל אחד פוסט עם פרטיו וסיפורו. ו<strong>מיצגי הנצחה פיזיים</strong> שיצרנו, והצבנו במקומות מרכזיים בארץ.</p>
+        <p>מאז "לזכרם" הפך לפלטפורמת הנצחה לאומית — <strong>140 מיליון צפיות באינסטגרם</strong>, אלפי משפחות שכולות שמנציחות בו את יקיריהן, <strong>עשרות אנשי מקצוע וחברות שותפים למיזם</strong>, סיקור תקשורתי נרחב, ושיחות עם תלמידים בכל רחבי הארץ.</p>
+        <p>בכל סדנה התחזקה בי יותר ההבנה — <strong>כל בן ובת נוער בישראל יכולים להשפיע.</strong> אם רק מישהו יגיד להם את זה בגובה העיניים, והם יקבלו את הכלים והביטחון שזה אפשרי.</p>
+        <div class="root-pullquote">בדיוק לזה הסדנה הזו נולדה.</div>
+      </div>
+    </div>
+
+    <div class="root-evidence reveal">
+      <div class="evidence-grid">
+        <figure class="evidence-item" data-lightbox="evidence">
+          <img src="images/lezichram-installation.jpg" alt="מיצג ההנצחה של 'לזכרם' בטיילת תל אביב">
+          <figcaption>מיצג ההנצחה בטיילת תל אביב</figcaption>
+        </figure>
+        <figure class="evidence-item" data-lightbox="evidence">
+          <img src="images/lezichram-post-screenshot.jpg" alt="פוסט הנצחה לנופל">
+          <figcaption>פוסט הנצחה לנופל (דוגמה)</figcaption>
+        </figure>
+        <figure class="evidence-item evidence-instagram" data-lightbox="evidence">
+          <img src="images/lezichram-instagram-page.jpg" alt="עמוד 'לזכרם' באינסטגרם">
+          <figcaption>עמוד "לזכרם" באינסטגרם</figcaption>
+        </figure>
+      </div>
+    </div>
+  </div>
+</section>
 <section id="outcomes">
   <div class="container-wide">
     <div class="section-head reveal">
@@ -1231,6 +1272,12 @@
       <p>ממנהלים, רכזים וראשי מסגרות חינוכיות</p>
     </div>
 
+    <div class="school-logos-strip reveal">
+      <img src="images/logo-amit-petach-tikva.jpg" alt="כפר הנוער אמי&quot;ת פתח תקווה" loading="lazy">
+      <img src="images/logo-amit-bar-ilan.jpg" alt="אמי&quot;ת בר אילן גוש דן" loading="lazy">
+      <img src="images/logo-or-lod.png" alt="מכינת אור לוד" loading="lazy">
+    </div>
+
     <div class="testimonials-grid">
 
       <article class="testimonial reveal">
@@ -1260,47 +1307,6 @@
         </div>
       </article>
 
-    </div>
-  </div>
-</section>
-
-<section id="root">
-  <div class="container-wide">
-    <div class="bereaved-quote reveal">
-      <span class="bereaved-mark">&ldquo;</span>
-      <p class="bereaved-text">לקחת את המושג "חלל" שהוא ריק וכלום, והכנסת בו חיים. אתה פשוט הבאת את הגאולה.</p>
-      <p class="bereaved-attribution">— נאוה, אמו של עמית בן יגאל ז"ל</p>
-    </div>
-    <div class="root-grid">
-      <div class="root-image reveal">
-        <img src="images/yagel-lezichram-stage.png" alt="יגל בר מציג את מיזם לזכרם">
-      </div>
-      <div class="root-content reveal reveal-d1">
-        <span class="eyebrow">איך הכל התחיל</span>
-        <h2>בגיל 21, הבנתי שמשהו לא עובד.</h2>
-        <p>יש לנו טקסים מרגשים ביום הזיכרון, יש אתרי אינטרנט להנצחה, אבל אין דרך נגישה לזכור את הנופלים בחיי היום-יום. <strong>לא הייתה פלטפורמה שמחברת את הדור הצעיר — שמבלה את רוב זמנו ברשתות החברתיות — לסיפורי הגבורה של מי שהקריבו את חייהם כדי שנוכל לחיות כאן.</strong></p>
-        <p>אז התחלתי לבנות משהו. בלי תקציב, בלי ניסיון, בלי ודאות שזה יעבוד. הקמתי את <strong>"לזכרם"</strong> - מיזם ההנצחה שמחבר את הזיכרון לדור הצעיר - דרך עמוד האינסטגרם המרכזי בו מונצחים <strong>מעל 20,000 נופלים</strong> — לכל אחד פוסט עם פרטיו וסיפורו. ו<strong>מיצגי הנצחה פיזיים</strong> שיצרנו, והצבנו במקומות מרכזיים בארץ.</p>
-        <p>מאז "לזכרם" הפך לפלטפורמת הנצחה לאומית — <strong>140 מיליון צפיות באינסטגרם</strong>, אלפי משפחות שכולות שמנציחות בו את יקיריהן, <strong>עשרות אנשי מקצוע וחברות שותפים למיזם</strong>, סיקור תקשורתי נרחב, ושיחות עם תלמידים בכל רחבי הארץ.</p>
-        <p>בכל סדנה התחזקה בי יותר ההבנה — <strong>כל בן ובת נוער בישראל יכולים להשפיע.</strong> אם רק מישהו יגיד להם את זה בגובה העיניים, והם יקבלו את הכלים והביטחון שזה אפשרי.</p>
-        <div class="root-pullquote">בדיוק לזה הסדנה הזו נולדה.</div>
-      </div>
-    </div>
-
-    <div class="root-evidence reveal">
-      <div class="evidence-grid">
-        <figure class="evidence-item" data-lightbox="evidence">
-          <img src="images/lezichram-installation.jpg" alt="מיצג ההנצחה של 'לזכרם' בטיילת תל אביב">
-          <figcaption>מיצג ההנצחה בטיילת תל אביב</figcaption>
-        </figure>
-        <figure class="evidence-item" data-lightbox="evidence">
-          <img src="images/lezichram-post-screenshot.jpg" alt="פוסט הנצחה לנופל">
-          <figcaption>פוסט הנצחה לנופל (דוגמה)</figcaption>
-        </figure>
-        <figure class="evidence-item evidence-instagram" data-lightbox="evidence">
-          <img src="images/lezichram-instagram-page.jpg" alt="עמוד 'לזכרם' באינסטגרם">
-          <figcaption>עמוד "לזכרם" באינסטגרם</figcaption>
-        </figure>
-      </div>
     </div>
   </div>
 </section>
