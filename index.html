@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="he" dir="rtl">
 <head>
+  <script>
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
+  </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6SPK5FPM5"></script>
   <script>
