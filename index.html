@@ -1171,7 +1171,7 @@
     <div class="hero-text">
       <h1 class="reveal in reveal-d2">
         בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
-        עכשיו אני מלמד את התלמידים איך גם הם יכולים להשפיע
+        היום אני מלמד את התלמידים איך גם הם יכולים להשפיע
       </h1>
       <p class="hero-meta reveal in">סדנה לתלמידי חטיבה ותיכון | <span class="meta-accent">תוכנית רשומה בגפ"ן</span></p>
       <a href="#goals" class="hero-scroll-cue reveal in reveal-d4" aria-label="גלילה למטה">
@@ -1578,7 +1578,19 @@
       }
     });
   }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
-  document.querySelectorAll('.reveal:not(.in)').forEach(el => io.observe(el));
+  document.querySelectorAll('.reveal:not(.in)').forEach(el => {
+    if (!el.closest('.goals-grid')) io.observe(el);
+  });
+
+  const ioEarly = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('in');
+        ioEarly.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0, rootMargin: '0px 0px 200px 0px' });
+  document.querySelectorAll('.goals-grid .reveal:not(.in)').forEach(el => ioEarly.observe(el));
 
   const video = document.getElementById('mainVideo');
   const playBtn = document.getElementById('playBtn');
