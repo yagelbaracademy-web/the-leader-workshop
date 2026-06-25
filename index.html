@@ -808,6 +808,49 @@
     .outcome h3 { font-size: 19px; margin-bottom: 10px; }
     .outcome p { font-size: 15px; color: var(--text-mid); line-height: 1.65; }
 
+    /* QUICK FACTS */
+    .facts-list {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .fact-row {
+      display: flex;
+      gap: 24px;
+      align-items: baseline;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+    .fact-row:last-child { border-bottom: none; }
+    .fact-label {
+      flex: 0 0 130px;
+      font-weight: 700;
+      color: var(--text);
+      font-size: 15px;
+    }
+    .fact-value {
+      flex: 1;
+      color: var(--text-mid);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+    .fact-bullets { margin: 0; padding-inline-start: 18px; }
+    .fact-bullets li { margin-bottom: 2px; }
+    .fact-bullets li:last-child { margin-bottom: 0; }
+    @media (max-width: 600px) {
+      .fact-row { flex-direction: column; gap: 4px; padding: 18px 20px; }
+      .fact-label {
+        flex: none;
+        color: var(--gold);
+        font-size: 12.5px;
+        font-weight: 700;
+        letter-spacing: .4px;
+      }
+    }
+
     /* GOALS */
     #goals { background: var(--bg); }
     @media (max-width: 720px) {
@@ -1417,6 +1460,41 @@
       <div class="outcome reveal reveal-d2">
         <h3>חוסן מול כישלון</h3>
         <p>איך לקום אחרי דחיות, להתמודד עם ספקות, ולא לוותר על חזון — הכלי שיישאר איתם בצבא, באוניברסיטה ובחיים.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="quick-facts" class="tight">
+  <div class="container-wide">
+    <div class="section-head reveal">
+      <h2>על הסדנה בקצרה</h2>
+    </div>
+    <div class="facts-list reveal">
+      <div class="fact-row">
+        <span class="fact-label">קהל יעד</span>
+        <span class="fact-value">תלמידי כיתות ח'-י"ב</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">מסגרת</span>
+        <span class="fact-value">כיתה, שכבה או אולם שלם</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">אורך הסדנה</span>
+        <span class="fact-value">
+          <ul class="fact-bullets">
+            <li>מפגש חד-פעמי של כ-50 דקות</li>
+            <li>או סדרה מעמיקה של 5-8 מפגשים להעמקת הערך</li>
+          </ul>
+        </span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">מימון</span>
+        <span class="fact-value">מאושרת רשמית למימון מתקציב גפ"ן</span>
+      </div>
+      <div class="fact-row">
+        <span class="fact-label">שם הסדנה בגפ"ן</span>
+        <span class="fact-value">"יזמות מתוך משמעות"<br>או סדנה "לזכרם" - מיזם חברתי ערכי</span>
       </div>
     </div>
   </div>
