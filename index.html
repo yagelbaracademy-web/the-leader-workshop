@@ -362,6 +362,24 @@
       position: relative; z-index: 2;
       max-width: 760px; margin: 0 auto;
     }
+    .hero-sound-toggle {
+      position: absolute;
+      top: 16px; right: 16px;
+      z-index: 3;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      background: rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.25);
+      color: rgba(255,255,255,.92);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+    }
+    .hero-sound-toggle svg { width: 16px; height: 16px; }
+    .hero-sound-toggle .icon-sound-off { display: none; }
+    .hero-sound-toggle.muted .icon-sound-on { display: none; }
+    .hero-sound-toggle.muted .icon-sound-off { display: block; }
     @media (max-width: 720px) {
       #hero {
         min-height: 0;
@@ -1168,7 +1186,11 @@
 </nav>
 
 <section id="hero">
-  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="images/hero-loop-poster.jpg"></video>
+  <video class="hero-video" id="heroVideo" autoplay loop playsinline poster="images/hero-loop-poster.jpg"></video>
+  <button class="hero-sound-toggle" id="heroSoundToggle" aria-label="השתק קול" aria-pressed="false">
+    <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
+    <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
+  </button>
   <script>
     (function() {
       var v = document.getElementById('heroVideo');
@@ -1179,8 +1201,36 @@
       s.type = 'video/mp4';
       v.appendChild(s);
       v.load();
+      v.volume = 0.5;
+
+      var toggle = document.getElementById('heroSoundToggle');
+      var setMutedUI = function(muted) {
+        toggle.classList.toggle('muted', muted);
+        toggle.setAttribute('aria-pressed', String(muted));
+      };
+      v.muted = false;
       var p = v.play();
-      if (p && p.catch) p.catch(function() {});
+      if (p && p.catch) {
+        p.catch(function() {
+          v.muted = true;
+          setMutedUI(true);
+          v.play().catch(function() {});
+        });
+      }
+      setMutedUI(v.muted);
+
+      toggle.addEventListener('click', function() {
+        v.muted = !v.muted;
+        setMutedUI(v.muted);
+      });
+
+      var heroObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) v.play().catch(function() {});
+          else v.pause();
+        });
+      }, { threshold: 0 });
+      heroObserver.observe(document.getElementById('hero'));
 
       if (isMobile) {
         var hero = document.getElementById('hero');
