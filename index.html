@@ -340,6 +340,53 @@
       .phone-fab svg { width: 23px; height: 23px; }
     }
 
+    /* SECTION NAV */
+    .section-nav {
+      position: fixed;
+      top: auto; left: auto;
+      bottom: 22px; right: 6px;
+      z-index: 250;
+      display: flex;
+      flex-direction: column;
+      padding: 6px 6px 6px 14px;
+      touch-action: none;
+    }
+    .section-nav .tick-zone {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      height: 20px;
+      cursor: pointer;
+    }
+    .section-nav .tick {
+      width: 13px; height: 3px;
+      border-radius: 100px;
+      background: rgba(17,17,17,.20);
+      transition: background .15s, width .15s, height .15s;
+    }
+    .section-nav .tick-zone.active .tick { background: var(--gold); width: 19px; }
+    .section-nav .tick-zone.dragging .tick { background: var(--text); width: 38px; height: 5px; }
+    .section-nav-tooltip {
+      position: fixed;
+      right: 64px;
+      transform: translateY(-50%);
+      background: var(--text);
+      color: var(--white);
+      font-size: 13px;
+      font-weight: 600;
+      padding: 7px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .15s;
+      z-index: 251;
+    }
+    .section-nav-tooltip.visible { opacity: 1; }
+    @media (max-width: 720px) {
+      .section-nav { bottom: 16px; right: 12px; }
+    }
+
     /* HERO */
     #hero {
       position: relative;
@@ -1468,7 +1515,7 @@
 <section id="quick-facts" class="tight">
   <div class="container-wide">
     <div class="section-head reveal">
-      <h2>על הסדנה בקצרה</h2>
+      <h2>מבנה הסדנה</h2>
     </div>
     <div class="facts-list reveal">
       <div class="fact-row">
@@ -1906,11 +1953,111 @@
       if (Math.abs(dx) > 50) (dx > 0 ? prev : next)();
     });
   })();
+
+  // SECTION NAV
+  document.addEventListener('DOMContentLoaded', function() {
+    const navEl = document.getElementById('sectionNav');
+    if (!navEl) return;
+    const zones = Array.from(navEl.querySelectorAll('.tick-zone'));
+    const tooltip = document.getElementById('sectionNavTooltip');
+    let dragIndex = -1;
+
+    const vibrate = () => { if (navigator.vibrate) navigator.vibrate(8); };
+
+    const showTooltip = (zone) => {
+      tooltip.textContent = zone.dataset.label;
+      tooltip.style.top = zone.getBoundingClientRect().top + (zone.offsetHeight / 2) + 'px';
+      tooltip.classList.add('visible');
+    };
+    const hideTooltip = () => tooltip.classList.remove('visible');
+
+    const indexFromPoint = (clientY) => {
+      for (let i = 0; i < zones.length; i++) {
+        const r = zones[i].getBoundingClientRect();
+        if (clientY >= r.top && clientY <= r.bottom) return i;
+      }
+      const first = zones[0].getBoundingClientRect();
+      const last = zones[zones.length - 1].getBoundingClientRect();
+      if (clientY < first.top) return 0;
+      if (clientY > last.bottom) return zones.length - 1;
+      return -1;
+    };
+
+    const setDragIndex = (i) => {
+      if (i === dragIndex) return;
+      if (dragIndex >= 0) zones[dragIndex].classList.remove('dragging');
+      dragIndex = i;
+      if (dragIndex >= 0) {
+        zones[dragIndex].classList.add('dragging');
+        showTooltip(zones[dragIndex]);
+        vibrate();
+      }
+    };
+
+    const endDrag = () => {
+      if (dragIndex >= 0) {
+        zones[dragIndex].classList.remove('dragging');
+        const target = document.querySelector(zones[dragIndex].dataset.target);
+        if (target) target.scrollIntoView({ behavior: 'smooth' });
+      }
+      dragIndex = -1;
+      hideTooltip();
+    };
+
+    navEl.addEventListener('pointerdown', (e) => {
+      try { navEl.setPointerCapture(e.pointerId); } catch (err) {}
+      setDragIndex(indexFromPoint(e.clientY));
+    });
+    navEl.addEventListener('pointermove', (e) => {
+      if (dragIndex === -1 && e.pointerType === 'mouse') return;
+      if (e.buttons === 0 && e.pointerType === 'mouse') return;
+      const i = indexFromPoint(e.clientY);
+      if (i !== -1) setDragIndex(i);
+    });
+    navEl.addEventListener('pointerup', endDrag);
+    navEl.addEventListener('pointercancel', endDrag);
+
+    const sections = zones.map(z => document.querySelector(z.dataset.target));
+    let spyTicking = false;
+    const updateActiveByScroll = () => {
+      spyTicking = false;
+      const refY = window.innerHeight * 0.35;
+      let activeIdx = 0;
+      sections.forEach((sec, i) => {
+        if (sec && sec.getBoundingClientRect().top <= refY) activeIdx = i;
+      });
+      zones.forEach(z => z.classList.remove('active'));
+      zones[activeIdx].classList.add('active');
+    };
+    window.addEventListener('scroll', () => {
+      if (!spyTicking) {
+        spyTicking = true;
+        requestAnimationFrame(updateActiveByScroll);
+      }
+    }, { passive: true });
+    updateActiveByScroll();
+  });
 </script>
 
 <a href="tel:+972506807708" class="phone-fab" aria-label="התקשרו אלינו: 050-6807708">
   <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
 </a>
+
+<nav class="section-nav" id="sectionNav" aria-label="ניווט בין סקשנים">
+  <div class="tick-zone" data-target="#hero" data-label="פתיחה"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#goals" data-label="מטרות הסדנה"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#logos" data-label="סיקור בתקשורת"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#testimonials" data-label="המלצות"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#outcomes" data-label="תוצאות"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#quick-facts" data-label="הסדנה בקצרה"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#student-voices" data-label="תלמידים כתבו"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#root" data-label="איך זה התחיל"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#gallery" data-label="הסדנה בפעולה"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#about" data-label="על המנחה"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#faq" data-label="שאלות ותשובות"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#cta" data-label="יצירת קשר"><span class="tick"></span></div>
+</nav>
+<div class="section-nav-tooltip" id="sectionNavTooltip"></div>
 
 </body>
 </html>
