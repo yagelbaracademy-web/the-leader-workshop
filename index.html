@@ -1208,15 +1208,17 @@
       var targetVolume = 0.5;
       v.volume = 0;
 
-      var fadeTimer = null;
+      var fadeDuration = 3000;
+      var fadeRAF = null;
       var fadeVolumeIn = function() {
-        if (fadeTimer) clearInterval(fadeTimer);
-        var steps = 24, i = 0;
-        fadeTimer = setInterval(function() {
-          i++;
-          v.volume = Math.min(targetVolume, (targetVolume / steps) * i);
-          if (i >= steps) clearInterval(fadeTimer);
-        }, 3000 / steps);
+        if (fadeRAF) cancelAnimationFrame(fadeRAF);
+        var start = performance.now();
+        var step = function(now) {
+          var progress = Math.min(1, (now - start) / fadeDuration);
+          v.volume = targetVolume * Math.pow(progress, 3);
+          if (progress < 1) fadeRAF = requestAnimationFrame(step);
+        };
+        fadeRAF = requestAnimationFrame(step);
       };
 
       var toggle = document.getElementById('heroSoundToggle');
