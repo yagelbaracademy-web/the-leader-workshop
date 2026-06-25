@@ -1196,7 +1196,7 @@
 </nav>
 
 <section id="hero">
-  <video class="hero-video" id="heroVideo" autoplay loop playsinline poster="images/hero-loop-poster.jpg"></video>
+  <video class="hero-video" id="heroVideo" autoplay muted loop playsinline poster="images/hero-loop-poster.jpg"></video>
   <button class="hero-sound-toggle" id="heroSoundToggle" aria-label="השתק קול" aria-pressed="false">
     <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
@@ -1226,69 +1226,30 @@
           audioCtx = new Ctor();
           var sourceNode = audioCtx.createMediaElementSource(v);
           gainNode = audioCtx.createGain();
-          gainNode.gain.value = 0;
+          gainNode.gain.value = targetVolume;
           sourceNode.connect(gainNode);
           gainNode.connect(audioCtx.destination);
         } catch (e) {}
       };
 
-      var fadeDuration = 3000;
-      var fadeRAF = null;
-      var fadeVolumeIn = function() {
-        if (!gainNode) return;
-        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
-        if (fadeRAF) cancelAnimationFrame(fadeRAF);
-        var start = performance.now();
-        var step = function(now) {
-          var progress = Math.min(1, (now - start) / fadeDuration);
-          gainNode.gain.value = targetVolume * Math.pow(progress, 3);
-          if (progress < 1) fadeRAF = requestAnimationFrame(step);
-        };
-        fadeRAF = requestAnimationFrame(step);
-      };
+      v.play().catch(function() {});
 
       var toggle = document.getElementById('heroSoundToggle');
       var setMutedUI = function(muted) {
         toggle.classList.toggle('muted', muted);
         toggle.setAttribute('aria-pressed', String(muted));
       };
-      v.muted = false;
-      var p = v.play();
-      if (p && p.then) {
-        p.then(function() {
-          setupAudioGraph();
-          fadeVolumeIn();
-        }).catch(function() {
-          v.muted = true;
-          setMutedUI(true);
-          v.play().catch(function() {});
-        });
-      }
-      setMutedUI(v.muted);
+      setMutedUI(true);
 
       toggle.addEventListener('click', function() {
         if (v.muted) {
           v.muted = false;
           setupAudioGraph();
-          fadeVolumeIn();
+          if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
         } else {
           v.muted = true;
-          if (fadeRAF) cancelAnimationFrame(fadeRAF);
-          if (gainNode) gainNode.gain.value = 0;
         }
         setMutedUI(v.muted);
-      });
-
-      var unlockSound = function() {
-        if (!v.muted) return;
-        v.muted = false;
-        v.play().catch(function() {});
-        setupAudioGraph();
-        fadeVolumeIn();
-        setTimeout(function() { setMutedUI(v.muted); }, 50);
-      };
-      ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(function(evt) {
-        window.addEventListener(evt, unlockSound, { once: true, passive: true });
       });
 
       var expandBtn = document.getElementById('heroExpandBtn');
