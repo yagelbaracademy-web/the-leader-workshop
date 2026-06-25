@@ -2,11 +2,36 @@
 <html lang="he" dir="rtl">
 <head>
   <script>
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-    window.scrollTo(0, 0);
-    document.addEventListener('DOMContentLoaded', function() { window.scrollTo(0, 0); });
-    window.addEventListener('load', function() { window.scrollTo(0, 0); });
-    window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
+    (function() {
+      if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+      var STORE_KEY = 'leaderWorkshopScrollY';
+      var navEntries = performance.getEntriesByType('navigation');
+      var navType = navEntries.length ? navEntries[0].type : 'navigate';
+
+      if (navType === 'reload' || navType === 'back_forward') {
+        var saved = sessionStorage.getItem(STORE_KEY);
+        if (saved !== null) {
+          var restore = function() { window.scrollTo(0, parseInt(saved, 10)); };
+          restore();
+          document.addEventListener('DOMContentLoaded', restore);
+          window.addEventListener('load', restore);
+        }
+      } else {
+        sessionStorage.removeItem(STORE_KEY);
+        window.scrollTo(0, 0);
+        document.addEventListener('DOMContentLoaded', function() { window.scrollTo(0, 0); });
+        window.addEventListener('load', function() { window.scrollTo(0, 0); });
+      }
+
+      var saveTimer = null;
+      window.addEventListener('scroll', function() {
+        if (saveTimer) return;
+        saveTimer = setTimeout(function() {
+          sessionStorage.setItem(STORE_KEY, String(window.scrollY));
+          saveTimer = null;
+        }, 200);
+      }, { passive: true });
+    })();
   </script>
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-L6SPK5FPM5"></script>
