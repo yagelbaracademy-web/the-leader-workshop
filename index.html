@@ -380,6 +380,7 @@
     .hero-sound-toggle .icon-sound-off { display: none; }
     .hero-sound-toggle.muted .icon-sound-on { display: none; }
     .hero-sound-toggle.muted .icon-sound-off { display: block; }
+    .hero-expand-btn { right: 60px; }
     @media (max-width: 720px) {
       #hero {
         min-height: 0;
@@ -1191,6 +1192,9 @@
     <svg class="icon-sound-on" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"/></svg>
     <svg class="icon-sound-off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 5L6 9H2v6h4l5 4V5z"/><line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/></svg>
   </button>
+  <button class="hero-sound-toggle hero-expand-btn" id="heroExpandBtn" aria-label="צפייה מלאה בסרטון">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>
+  </button>
   <script>
     (function() {
       var v = document.getElementById('heroVideo');
@@ -1201,7 +1205,19 @@
       s.type = 'video/mp4';
       v.appendChild(s);
       v.load();
-      v.volume = 0.5;
+      var targetVolume = 0.5;
+      v.volume = 0;
+
+      var fadeTimer = null;
+      var fadeVolumeIn = function() {
+        if (fadeTimer) clearInterval(fadeTimer);
+        var steps = 24, i = 0;
+        fadeTimer = setInterval(function() {
+          i++;
+          v.volume = Math.min(targetVolume, (targetVolume / steps) * i);
+          if (i >= steps) clearInterval(fadeTimer);
+        }, 1500 / steps);
+      };
 
       var toggle = document.getElementById('heroSoundToggle');
       var setMutedUI = function(muted) {
@@ -1210,8 +1226,10 @@
       };
       v.muted = false;
       var p = v.play();
-      if (p && p.catch) {
-        p.catch(function() {
+      if (p && p.then) {
+        p.then(function() {
+          fadeVolumeIn();
+        }).catch(function() {
           v.muted = true;
           setMutedUI(true);
           v.play().catch(function() {});
@@ -1220,18 +1238,33 @@
       setMutedUI(v.muted);
 
       toggle.addEventListener('click', function() {
-        v.muted = !v.muted;
+        if (v.muted) {
+          v.muted = false;
+          v.volume = 0;
+          fadeVolumeIn();
+        } else {
+          v.muted = true;
+        }
         setMutedUI(v.muted);
       });
 
       var unlockSound = function() {
         if (!v.muted) return;
         v.muted = false;
+        v.volume = 0;
         v.play().catch(function() {});
+        fadeVolumeIn();
         setTimeout(function() { setMutedUI(v.muted); }, 50);
       };
       ['pointerdown', 'touchstart', 'scroll', 'keydown'].forEach(function(evt) {
         window.addEventListener(evt, unlockSound, { once: true, passive: true });
+      });
+
+      var expandBtn = document.getElementById('heroExpandBtn');
+      expandBtn.addEventListener('click', function() {
+        if (v.requestFullscreen) v.requestFullscreen();
+        else if (v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+        else if (v.webkitRequestFullscreen) v.webkitRequestFullscreen();
       });
 
       var heroObserver = new IntersectionObserver(function(entries) {
