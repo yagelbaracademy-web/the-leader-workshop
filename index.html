@@ -1214,17 +1214,34 @@
       s.type = 'video/mp4';
       v.appendChild(s);
       v.load();
-      var targetVolume = 0.3;
-      v.volume = 0;
+      var targetVolume = 0.5;
+
+      // iOS Safari ignores video.volume entirely (always plays at full level) -
+      // route audio through a GainNode instead, which iOS does honor.
+      var audioCtx, gainNode;
+      var setupAudioGraph = function() {
+        if (gainNode) return;
+        try {
+          var Ctor = window.AudioContext || window.webkitAudioContext;
+          audioCtx = new Ctor();
+          var sourceNode = audioCtx.createMediaElementSource(v);
+          gainNode = audioCtx.createGain();
+          gainNode.gain.value = 0;
+          sourceNode.connect(gainNode);
+          gainNode.connect(audioCtx.destination);
+        } catch (e) {}
+      };
 
       var fadeDuration = 3000;
       var fadeRAF = null;
       var fadeVolumeIn = function() {
+        if (!gainNode) return;
+        if (audioCtx && audioCtx.state === 'suspended') audioCtx.resume();
         if (fadeRAF) cancelAnimationFrame(fadeRAF);
         var start = performance.now();
         var step = function(now) {
           var progress = Math.min(1, (now - start) / fadeDuration);
-          v.volume = targetVolume * Math.pow(progress, 3);
+          gainNode.gain.value = targetVolume * Math.pow(progress, 3);
           if (progress < 1) fadeRAF = requestAnimationFrame(step);
         };
         fadeRAF = requestAnimationFrame(step);
@@ -1239,6 +1256,7 @@
       var p = v.play();
       if (p && p.then) {
         p.then(function() {
+          setupAudioGraph();
           fadeVolumeIn();
         }).catch(function() {
           v.muted = true;
@@ -1251,10 +1269,12 @@
       toggle.addEventListener('click', function() {
         if (v.muted) {
           v.muted = false;
-          v.volume = 0;
+          setupAudioGraph();
           fadeVolumeIn();
         } else {
           v.muted = true;
+          if (fadeRAF) cancelAnimationFrame(fadeRAF);
+          if (gainNode) gainNode.gain.value = 0;
         }
         setMutedUI(v.muted);
       });
@@ -1262,8 +1282,8 @@
       var unlockSound = function() {
         if (!v.muted) return;
         v.muted = false;
-        v.volume = 0;
         v.play().catch(function() {});
+        setupAudioGraph();
         fadeVolumeIn();
         setTimeout(function() { setMutedUI(v.muted); }, 50);
       };
