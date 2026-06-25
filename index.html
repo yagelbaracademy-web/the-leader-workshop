@@ -320,6 +320,26 @@
     }
     .nav-cta:hover { background: #333; transform: translateY(-1px); }
 
+    /* PHONE FAB */
+    .phone-fab {
+      position: fixed;
+      bottom: 22px; left: 22px;
+      z-index: 250;
+      width: 58px; height: 58px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--white);
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 24px rgba(0,0,0,.28);
+      transition: transform .2s, box-shadow .2s, background .2s;
+    }
+    .phone-fab:hover { background: var(--gold-warm); transform: scale(1.06); box-shadow: 0 10px 30px rgba(0,0,0,.34); }
+    .phone-fab svg { width: 26px; height: 26px; }
+    @media (max-width: 720px) {
+      .phone-fab { bottom: 16px; left: 16px; width: 52px; height: 52px; }
+      .phone-fab svg { width: 23px; height: 23px; }
+    }
+
     /* HERO */
     #hero {
       position: relative;
@@ -1724,6 +1744,10 @@
     });
   })();
 </script>
+
+<a href="tel:+972506807708" class="phone-fab" aria-label="התקשרו אלינו: 050-6807708">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79a15.05 15.05 0 0 0 6.59 6.59l2.2-2.2a1 1 0 0 1 1.01-.24c1.12.37 2.33.57 3.58.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.61 21 3 13.39 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.46.57 3.58a1 1 0 0 1-.25 1.01l-2.2 2.2z"/></svg>
+</a>
 
 </body>
 </html>
