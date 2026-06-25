@@ -1216,7 +1216,7 @@
           i++;
           v.volume = Math.min(targetVolume, (targetVolume / steps) * i);
           if (i >= steps) clearInterval(fadeTimer);
-        }, 1500 / steps);
+        }, 2000 / steps);
       };
 
       var toggle = document.getElementById('heroSoundToggle');
