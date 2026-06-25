@@ -3,6 +3,9 @@
 <head>
   <script>
     if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+    window.scrollTo(0, 0);
+    document.addEventListener('DOMContentLoaded', function() { window.scrollTo(0, 0); });
+    window.addEventListener('load', function() { window.scrollTo(0, 0); });
     window.addEventListener('pageshow', function() { window.scrollTo(0, 0); });
   </script>
   <!-- Google tag (gtag.js) -->
@@ -237,7 +240,7 @@
       --max-xwide: 1280px;
     }
 
-    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; width: 100%; }
+    html { scroll-behavior: smooth; font-size: 16px; overflow-x: hidden; width: 100%; overflow-anchor: none; }
 
     body {
       font-family: 'Heebo', system-ui, -apple-system, sans-serif;
