@@ -300,7 +300,7 @@
     .reveal-d4 { transition-delay: .32s; }
 
     h1, h2, h3, h4 { font-weight: 800; line-height: 1.2; letter-spacing: -0.02em; }
-    h1 { font-size: clamp(23px, 3.4vw, 46px); font-weight: 900; line-height: 1.2; }
+    h1 { font-size: clamp(24px, 3.2vw, 42px); font-weight: 900; line-height: 1.2; }
     h2 { font-size: clamp(28px, 4vw, 44px); }
     h3 { font-size: clamp(20px, 2.4vw, 26px); }
 
@@ -672,10 +672,11 @@
     }
     .root-eyebrow {
       display: block;
-      font-size: 14px;
-      font-weight: 700;
-      color: var(--gold);
-      margin-bottom: 10px;
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--text-dark);
+      margin-bottom: 20px;
+      line-height: 1.25;
     }
     .root-content h2 { margin-bottom: 28px; }
     .root-content p {
@@ -694,14 +695,6 @@
       letter-spacing: -0.01em;
     }
 
-    .bereaved-quote {
-      max-width: 820px;
-      margin: 0 auto 72px;
-      text-align: center;
-      padding: 48px 36px 40px;
-      border: 2px solid var(--gold-line);
-      border-radius: 20px;
-    }
     .bereaved-mark {
       font-family: Georgia, "Times New Roman", serif;
       font-size: clamp(72px, 8vw, 110px);
@@ -725,11 +718,6 @@
       font-weight: 500;
       margin: 0;
       letter-spacing: 0.02em;
-    }
-    @media (max-width: 720px) {
-      .bereaved-quote { margin-bottom: 48px; padding: 36px 22px 32px; }
-      .bereaved-mark { margin-bottom: 14px; }
-      .bereaved-text { margin-bottom: 20px; }
     }
 
     @media (max-width: 900px) {
@@ -1332,6 +1320,295 @@
     @media (max-width: 720px) {
       section { padding: 72px 0; }
     }
+
+    /* HERO BADGES */
+    .hero-badge-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    .hero-tag {
+      font-size: 13px; font-weight: 700; letter-spacing: .01em;
+      padding: 6px 16px; border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+      color: rgba(255,255,255,.9);
+      backdrop-filter: blur(4px);
+    }
+    .tag-gfn { color: #34E1A1; text-shadow: 0 0 14px rgba(52,225,161,.4); }
+    .hero-testimonial-quote {
+      margin: 32px 0 4px;
+      border-right: 3px solid rgba(255,255,255,.28);
+      padding-right: 14px;
+      max-width: 560px;
+    }
+    .hero-testimonial-quote p {
+      font-size: clamp(19px, 2.2vw, 26px);
+      color: #fff;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 1.6;
+      margin-bottom: 6px;
+      text-shadow: 0 2px 10px rgba(0,0,0,.4);
+    }
+    .hero-testimonial-quote cite {
+      font-size: 13px;
+      color: rgba(255,255,255,.58);
+      font-style: normal;
+      font-weight: 500;
+    }
+
+    /* BEREAVED SECTION — עם תמונה */
+    .bereaved-quote {
+      max-width: 860px;
+      margin: 0 auto 72px;
+      padding: 40px 44px;
+      background: var(--white);
+      border-radius: 20px;
+      box-shadow: 0 4px 28px rgba(0,0,0,.07), 0 0 0 1px var(--border);
+    }
+    .bereaved-inner {
+      display: flex;
+      align-items: center;
+      gap: 44px;
+    }
+    .bereaved-photo-col {
+      flex-shrink: 0;
+      text-align: center;
+    }
+    .bereaved-photo-wrap {
+      width: 148px;
+      height: 186px;
+      border-radius: 14px;
+      overflow: hidden;
+      box-shadow: 0 10px 28px rgba(0,0,0,.13);
+    }
+    .bereaved-photo {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      display: block;
+    }
+    .bereaved-photo-name {
+      margin-top: 10px;
+      font-size: 13.5px;
+      font-weight: 600;
+      color: var(--text-mid);
+      line-height: 1.4;
+    }
+    .bereaved-text-col { flex: 1; text-align: right; }
+    @media (max-width: 720px) {
+      .bereaved-quote { padding: 28px 22px; margin-bottom: 48px; }
+      .bereaved-inner { flex-direction: column; gap: 24px; }
+      .bereaved-photo-col { order: -1; }
+      .bereaved-photo-wrap { width: 112px; height: 140px; }
+      .bereaved-text { margin-bottom: 16px; }
+    }
+
+    /* LEZICHRAM FLOATING CARDS */
+    .root-lz-col {
+      position: relative;
+      overflow: visible;
+    }
+    .root-lz-img-wrap {
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+      box-shadow: 0 20px 50px rgba(0,0,0,.15);
+    }
+    .root-lz-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 20%;
+      display: block;
+    }
+    .lz-float {
+      position: absolute;
+      width: 36%;
+      cursor: pointer;
+    }
+    .lz-float-1 { bottom: 2%;  left: 34%; transform: rotate(-3deg); z-index: 3; }
+    .lz-float-2 { bottom: 8%;  left: 17%; transform: rotate(3.5deg); z-index: 2; }
+    .lz-float-3 { bottom: 18%; left: 1%;  transform: rotate(-5deg); z-index: 1; }
+    .lz-float:not(.lz-in-row) {
+      transition: transform 0.25s ease, z-index 0s;
+    }
+    .lz-float-1:not(.lz-in-row):hover { transform: scale(1.06) rotate(-2deg); z-index: 5; }
+    .lz-float-2:not(.lz-in-row):hover { transform: scale(1.06) rotate(1deg);  z-index: 5; }
+    .lz-float-3:not(.lz-in-row):hover { transform: scale(1.06) rotate(-1deg); z-index: 5; }
+    .lz-card {
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 10px 32px rgba(0,0,0,.55), 0 2px 8px rgba(0,0,0,.3);
+      position: relative;
+    }
+    .lz-card img { width: 100%; height: auto; display: block; }
+    .lz-overlay {
+      position: absolute; inset: 0;
+      background: rgba(0,0,0,.28);
+      opacity: 0;
+      transition: opacity 0.2s;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .lz-float:hover .lz-overlay { opacity: 1; }
+    .lz-overlay svg { width: 26px; height: 26px; }
+    .lz-caption { display: none; }
+
+    /* In-row state: after story is opened, floats move to below-row grid */
+    .lz-float.lz-in-row {
+      position: static;
+      width: 100%;
+    }
+    .lz-float.lz-in-row:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    .lz-float.lz-in-row .lz-card {
+      box-shadow: 0 6px 20px rgba(0,0,0,.22);
+    }
+    .lz-float.lz-in-row .lz-caption {
+      display: block;
+      margin-top: 8px;
+      font-size: 13px;
+      color: var(--text-mid);
+      font-weight: 500;
+      line-height: 1.4;
+      text-align: right;
+    }
+    .lz-below-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-top: 32px;
+    }
+    @media (max-width: 900px) {
+      .lz-float { display: none; }
+      .root-lz-img-wrap { max-width: 380px; margin: 0 auto; }
+      .lz-below-row { grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 20px; }
+    }
+
+    @keyframes lz-btn-glow {
+      0%, 100% { box-shadow: 0 0 0 0 rgba(212,168,42,.55), 0 4px 18px rgba(212,168,42,.3); }
+      55%       { box-shadow: 0 0 0 10px rgba(212,168,42,0), 0 4px 18px rgba(212,168,42,.3); }
+    }
+    @keyframes lz-arrow-bounce {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(4px); }
+    }
+
+    /* LZ IMAGE ROW */
+    .lz-timeline {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px;
+    }
+    .lz-timeline-step {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      cursor: zoom-in;
+    }
+    .lz-step-thumb {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 6px 20px rgba(0,0,0,.20);
+      transition: transform .25s, box-shadow .25s;
+    }
+    .lz-timeline-step:hover .lz-step-thumb {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(0,0,0,.28);
+    }
+    .lz-step-thumb img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .lz-step-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-mid);
+      text-align: center;
+      line-height: 1.35;
+    }
+
+    /* ROOT BUTTONS */
+    .root-expand-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      margin-top: 28px;
+      padding: 15px 32px;
+      background: var(--gold);
+      border: none;
+      border-radius: 100px;
+      color: #fff;
+      font-weight: 800;
+      font-size: 17px;
+      cursor: pointer;
+      transition: background .2s, transform .18s, box-shadow .18s;
+      font-family: inherit;
+      animation: lz-btn-glow 2.4s ease-in-out infinite;
+    }
+    .root-expand-btn:hover {
+      background: var(--gold-warm);
+      transform: translateY(-2px) scale(1.04);
+      box-shadow: 0 8px 28px rgba(212,168,42,.5);
+      animation: none;
+    }
+    .root-expand-btn .btn-arrow {
+      animation: lz-arrow-bounce 1.5s ease-in-out infinite;
+      display: inline-flex;
+    }
+    .root-expand-btn:hover .btn-arrow { animation: none; }
+    .root-collapse-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 22px;
+      padding: 10px 20px;
+      background: none;
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      color: var(--text-soft);
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background .2s, border-color .2s, color .2s;
+      font-family: inherit;
+    }
+    .root-collapse-btn:hover { background: var(--bg-warm); border-color: var(--text-soft); color: var(--text); }
+    .root-story-body { margin-top: 6px; }
+
+    @keyframes story-reveal {
+      from { opacity: 0; transform: translateY(-10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes lz-card-in {
+      from { opacity: 0; transform: translateY(20px) scale(0.88); }
+      to   { opacity: 1; transform: translateY(0)   scale(1); }
+    }
+    @keyframes story-hide {
+      from { opacity: 1; transform: translateY(0); }
+      to   { opacity: 0; transform: translateY(-8px); }
+    }
+    .root-story-body.open {
+      animation: story-reveal 0.45s ease both;
+    }
+    .root-story-body.closing {
+      animation: story-hide 0.32s ease both;
+    }
+    .root-story-body.open .lz-timeline-step {
+      animation: lz-card-in 0.44s ease both;
+    }
+    .root-story-body.open .lz-timeline-step:nth-child(1) { animation-delay: 0.28s; }
+    .root-story-body.open .lz-timeline-step:nth-child(2) { animation-delay: 0.40s; }
+    .root-story-body.open .lz-timeline-step:nth-child(3) { animation-delay: 0.52s; }
   </style>
 </head>
 <body>
@@ -1429,11 +1706,13 @@
   </script>
   <div class="hero-inner">
     <div class="hero-text">
-      <h1 class="reveal in reveal-d2">
-        בגיל 21 הקמתי את מיזם "לזכרם" שהשפיע על <span class="accent">מיליונים</span>.<br>
-        היום אני מלמד את התלמידים איך גם הם יכולים להשפיע
-      </h1>
-      <p class="hero-meta reveal in">סדנה לתלמידי חטיבה ותיכון | <span class="meta-accent">תוכנית רשומה בגפ"ן</span></p>
+      <div class="hero-badge-row reveal in">
+        <span class="hero-tag">יזמות מתוך משמעות · חטיבה ותיכון · <span class="tag-gfn">✓ תוכנית רשומה בגפ"ן</span></span>
+      </div>
+      <blockquote class="hero-testimonial-quote reveal in reveal-d2">
+        <p>"ליגל יש יכולת יוצאת דופן לרתק ולהעביר תכנים בצורה נגישה ומעוררת השראה. ממליץ מאוד!״</p>
+        <cite>— אלמוג נתנזון, מנהל הדרכה</cite>
+      </blockquote>
       <a href="#goals" class="hero-scroll-cue reveal in reveal-d4" aria-label="גלילה למטה">
         <svg width="20" height="11" viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 10 9 19 1"/></svg>
         <svg width="20" height="11" viewBox="0 0 20 11" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 1 10 9 19 1"/></svg>
@@ -1534,6 +1813,28 @@
   </div>
 </section>
 
+<section id="about">
+  <div class="container-wide">
+    <div class="about-grid">
+      <div class="about-image reveal">
+        <img src="images/yagel-headshot.PNG" alt="יגל בר">
+      </div>
+      <div class="about-content reveal reveal-d1">
+        <h2>יגל בר</h2>
+        <p class="lead">יזם חברתי, בוגר הטכניון, יוצר תוכן, ומייסד מיזם ההנצחה הלאומי <strong>"לזכרם"</strong>.</p>
+        <p>כנער, יגל עבר תקופה ארוכה של התמודדויות אישיות שדרשו ממנו ללמוד איך "לבנות את עצמו". יגל לא מלמד רק תיאוריה - הוא מלמד את אותם הכלים והערכים שבעזרתם בנה את <strong>"לזכרם"</strong>. מתוך ניסיון אמיתי.</p>
+        <ul class="credentials">
+          <li>מייסד <strong>"לזכרם"</strong> — מעל <strong>140 מיליון צפיות באינסטגרם</strong></li>
+          <li><strong>בוגר הטכניון</strong></li>
+          <li>בעל הכשרה ב-<strong>DBT ליועצים חינוכיים</strong> — המכללה האקדמית תל-אביב יפו</li>
+          <li>מנחה סדנאות בחטיבות, תיכונים, מכינות קדם-צבאיות, יסודי, פרטי ועוד</li>
+          <li>הסדנה מאושרת למימון מתקציב <strong>גפ"ן</strong></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="outcomes">
   <div class="container-wide">
     <div class="section-head reveal">
@@ -1591,7 +1892,7 @@
       </div>
       <div class="fact-row">
         <span class="fact-label">מימון</span>
-        <span class="fact-value">מאושרת רשמית למימון מתקציב גפ"ן</span>
+        <span class="fact-value" style="color:#1a7a4a; font-weight:700;">✓ מאושרת למימון מתקציב גפ"ן</span>
       </div>
       <div class="fact-row">
         <span class="fact-label">שם הסדנה בגפ"ן</span>
@@ -1628,39 +1929,86 @@
 <section id="root">
   <div class="container-wide">
     <div class="bereaved-quote reveal">
-      <span class="bereaved-mark">&ldquo;</span>
-      <p class="bereaved-text">לקחת את המושג "חלל" שהוא ריק וכלום, והכנסת בו חיים. אתה פשוט הבאת את הגאולה.</p>
-      <p class="bereaved-attribution">— נאוה, אמו של עמית בן יגאל ז"ל</p>
+      <div class="bereaved-inner">
+        <div class="bereaved-photo-col">
+          <div class="bereaved-photo-wrap">
+            <img src="images/amit-ben-yigal.png" alt='עמית בן יגאל ז"ל' class="bereaved-photo">
+          </div>
+          <p class="bereaved-photo-name">עמית בן יגאל ז"ל</p>
+        </div>
+        <div class="bereaved-text-col">
+          <p class="bereaved-text">״לקחת את המושג 'חלל' שהוא ריק וכלום, והכנסת בו חיים. אתה פשוט הבאת את הגאולה.״</p>
+          <p class="bereaved-attribution">— נאוה, אמו של עמית</p>
+        </div>
+      </div>
     </div>
     <div class="root-grid">
-      <div class="root-image reveal">
-        <img src="images/yagel-lezichram-stage.png" alt="יגל בר מציג את מיזם לזכרם">
+      <div class="root-lz-col reveal">
+        <div class="root-lz-img-wrap">
+          <img src="images/yagel-lezichram.jpg" alt="יגל בר מרצה על מיזם לזכרם" loading="lazy">
+        </div>
       </div>
+
       <div class="root-content reveal reveal-d1">
-        <span class="root-eyebrow">איך מיזם "לזכרם" נולד?</span>
-        <h2>בגיל 21, הבנתי שמשהו לא עובד.</h2>
-        <p>היו לנו טקסים ביום הזיכרון ואתרי הנצחה, אבל לא דרך לזכור את הנופלים בחיי היום-יום - בשפה של הדור הצעיר שחי ברשתות החברתיות. אז בלי תקציב, בלי ניסיון ובלי ודאות שזה יעבוד, הקמתי את <strong>"לזכרם"</strong> - עמוד אינסטגרם שבו מונצחים <strong>מעל 20,000 נופלים</strong>, פוסט אחד לכל סיפור, ו<strong>מיצגי הנצחה פיזיים</strong> שהצבנו במקומות מרכזיים בארץ.</p>
-        <p>היום זו פלטפורמת הנצחה לאומית - <strong>140 מיליון צפיות באינסטגרם</strong>, אלפי משפחות שכולות שמנציחות את יקיריהן, עשרות שותפים לעשייה. ובכל שיחה עם תלמידים מתחזקת בי ההבנה: <strong>כל בן ובת נוער בישראל יכולים להשפיע</strong> - אם רק צריכים מישהו, יגיד להם את זה בגובה העיניים וילמד אותם את הכלים והערכים הנכונים.</p>
-        <div class="root-pullquote">בדיוק לזה הסדנה הזו נולדה.</div>
+        <span class="root-eyebrow">איך מיזם ״לזכרם״ נולד?</span>
+        <button class="root-expand-btn" id="rootExpandBtn">
+          קראו את הסיפור
+          <span class="btn-arrow"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="6 9 12 15 18 9"/></svg></span>
+        </button>
+
+        <div class="root-story-body" id="rootStory" style="display:none">
+          <p>בגיל 21 (2022), הבנתי שמשהו לא עובד. היו לנו טקסים ביום הזיכרון ואתרי הנצחה, אבל לא דרך לזכור את הנופלים בחיי היום-יום - בשפה של הדור הצעיר שחי ברשתות החברתיות. אז בלי תקציב, בלי ניסיון ובלי ודאות שזה יעבוד, הקמתי את <strong>"לזכרם"</strong> - עמוד אינסטגרם שבו מונצחים <strong>מעל 20,000 נופלים</strong>, פוסט אחד לכל סיפור, ו<strong>מיצגי הנצחה פיזיים</strong> שהצבנו במקומות מרכזיים בארץ.</p>
+          <p>היום זו פלטפורמת הנצחה לאומית - <strong>140 מיליון צפיות באינסטגרם</strong>, אלפי משפחות שכולות שמנציחות את יקיריהן, עשרות שותפים לעשייה. ובכל שיחה עם תלמידים מתחזקת בי ההבנה:<br><br><strong>כל בן ובת נוער בישראל יכולים להשפיע</strong> - הם רק צריכים מישהו, שילמד אותם את הכלים והערכים הנכונים.</p>
+          <div class="root-pullquote">בדיוק לזה הסדנה הזו נולדה.</div>
+
+          <div class="lz-timeline">
+            <div class="lz-timeline-step" data-lightbox="lezichram" data-caption="עמוד ״לזכרם״ באינסטגרם">
+              <div class="lz-step-thumb"><img src="images/lezichram-instagram-page.jpg" alt="עמוד לזכרם באינסטגרם" loading="lazy"></div>
+              <p class="lz-step-label">עמוד ״לזכרם״ באינסטגרם</p>
+            </div>
+            <div class="lz-timeline-step" data-lightbox="lezichram" data-caption="פוסט הנצחה לנופל (דוגמה)">
+              <div class="lz-step-thumb"><img src="images/lezichram-post-screenshot.jpg" alt="פוסט הנצחה לנופל" loading="lazy"></div>
+              <p class="lz-step-label">פוסט הנצחה לנופל (דוגמה)</p>
+            </div>
+            <div class="lz-timeline-step" data-lightbox="lezichram" data-caption="מיצג ההנצחה בטיילת תל אביב">
+              <div class="lz-step-thumb"><img src="images/lezichram-installation.jpg" alt="מיצג ההנצחה" loading="lazy"></div>
+              <p class="lz-step-label">מיצג ההנצחה בטיילת תל אביב</p>
+            </div>
+          </div>
+
+          <button class="root-collapse-btn" id="rootCollapseBtn">
+            סגרו
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="18 15 12 9 6 15"/></svg>
+          </button>
+        </div>
       </div>
     </div>
 
-    <div class="root-evidence reveal">
-      <div class="evidence-grid">
-        <figure class="evidence-item" data-lightbox="evidence">
-          <img src="images/lezichram-installation.jpg" alt="מיצג ההנצחה של 'לזכרם' בטיילת תל אביב">
-          <figcaption>מיצג ההנצחה בטיילת תל אביב</figcaption>
-        </figure>
-        <figure class="evidence-item" data-lightbox="evidence">
-          <img src="images/lezichram-post-screenshot.jpg" alt="פוסט הנצחה לנופל">
-          <figcaption>פוסט הנצחה לנופל (דוגמה)</figcaption>
-        </figure>
-        <figure class="evidence-item evidence-instagram" data-lightbox="evidence">
-          <img src="images/lezichram-instagram-page.jpg" alt="עמוד 'לזכרם' באינסטגרם">
-          <figcaption>עמוד "לזכרם" באינסטגרם</figcaption>
-        </figure>
-      </div>
-    </div>
+    <script>
+      (function() {
+        var expandBtn   = document.getElementById('rootExpandBtn');
+        var collapseBtn = document.getElementById('rootCollapseBtn');
+        var story       = document.getElementById('rootStory');
+
+        expandBtn.addEventListener('click', function() {
+          story.style.display = 'block';
+          void story.offsetWidth;
+          story.classList.remove('closing');
+          story.classList.add('open');
+          expandBtn.style.display = 'none';
+        });
+
+        collapseBtn.addEventListener('click', function() {
+          story.classList.remove('open');
+          story.classList.add('closing');
+          setTimeout(function() {
+            story.classList.remove('closing');
+            story.style.display = 'none';
+            expandBtn.style.display = 'inline-flex';
+          }, 340);
+        });
+      })();
+    </script>
   </div>
 </section>
 
@@ -1695,28 +2043,6 @@
       <div class="gallery-img" data-lightbox="gallery"><img src="images/workshop-tower-build.jpg" alt="תלמידים בונים מגדל בתרגול הקבוצתי"></div>
       <div class="gallery-img" data-lightbox="gallery"><img src="images/yagel-teaching.jpg" alt="יגל מנחה תרגול קבוצתי"></div>
       <div class="gallery-img" data-lightbox="gallery"><img src="images/IMG_1243%202.jpg" alt="רגע מהסדנה"></div>
-    </div>
-  </div>
-</section>
-
-<section id="about">
-  <div class="container-wide">
-    <div class="about-grid">
-      <div class="about-image reveal">
-        <img src="images/yagel-headshot.PNG" alt="יגל בר">
-      </div>
-      <div class="about-content reveal reveal-d1">
-        <h2>יגל בר</h2>
-        <p class="lead">יזם חברתי, בוגר הטכניון, יוצר תוכן, ומייסד מיזם ההנצחה הלאומי <strong>"לזכרם"</strong>.</p>
-        <p>כנער, יגל עבר תקופה ארוכה של התמודדויות אישיות שדרשו ממנו ללמוד איך "לבנות את עצמו". יגל לא מלמד רק תיאוריה - הוא מלמד את אותם הכלים והערכים שבעזרתם בנה את <strong>"לזכרם"</strong>. מתוך ניסיון אמיתי.</p>
-        <ul class="credentials">
-          <li>מייסד <strong>"לזכרם"</strong> — מעל <strong>140 מיליון צפיות באינסטגרם</strong></li>
-          <li><strong>בוגר הטכניון</strong></li>
-          <li>בעל הכשרה ב-<strong>DBT ליועצים חינוכיים</strong> — המכללה האקדמית תל-אביב יפו</li>
-          <li>מנחה סדנאות בחטיבות, תיכונים, מכינות קדם-צבאיות, יסודי, פרטי ועוד</li>
-          <li>הסדנה מאושרת למימון מתקציב <strong>גפ"ן</strong></li>
-        </ul>
-      </div>
     </div>
   </div>
 </section>
@@ -2111,12 +2437,12 @@
   <div class="tick-zone" data-target="#goals" data-label="מטרות הסדנה"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#logos" data-label="סיקור בתקשורת"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#testimonials" data-label="המלצות"><span class="tick"></span></div>
+  <div class="tick-zone" data-target="#about" data-label="על המנחה"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#outcomes" data-label="כלים שיישארו"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#quick-facts" data-label="מבנה הסדנה"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#student-voices" data-label="תלמידים כתבו"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#root" data-label="איך זה התחיל"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#gallery" data-label="הסדנה בפעולה"><span class="tick"></span></div>
-  <div class="tick-zone" data-target="#about" data-label="על המנחה"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#faq" data-label="שאלות ותשובות"><span class="tick"></span></div>
   <div class="tick-zone" data-target="#cta" data-label="יצירת קשר"><span class="tick"></span></div>
 </nav>
