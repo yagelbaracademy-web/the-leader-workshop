@@ -1237,70 +1237,6 @@
       text-align: center;
       margin-top: 14px;
     }
-    .form-success {
-      display: none;
-      text-align: center;
-      padding: 56px 24px 44px;
-    }
-    .form-success.show {
-      display: block;
-      animation: successFadeIn 0.5s ease both;
-    }
-    .form-success-icon {
-      display: inline-flex;
-      width: 92px;
-      height: 92px;
-      background: var(--gold);
-      border-radius: 50%;
-      color: #14302C;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 30px;
-      box-shadow: 0 14px 40px rgba(212,168,42,.5);
-    }
-    .form-success.show .form-success-icon {
-      animation: successPop 0.5s ease 0.15s both;
-    }
-    .form-success h3 {
-      font-size: clamp(34px, 5vw, 44px);
-      font-weight: 800;
-      letter-spacing: -0.02em;
-      color: var(--white);
-      margin: 0 0 22px;
-      line-height: 1.15;
-    }
-    .form-success-text {
-      font-size: 19px;
-      color: rgba(255,255,255,.92);
-      line-height: 1.7;
-      margin: 0 auto 30px;
-      max-width: 440px;
-      font-weight: 500;
-    }
-    .form-success-divider {
-      width: 72px;
-      height: 1.5px;
-      background: var(--gold);
-      margin: 0 auto 20px;
-      border: none;
-    }
-    .form-success-signature {
-      font-size: 19px;
-      color: var(--gold-warm);
-      font-weight: 700;
-      margin: 0;
-      letter-spacing: 0.01em;
-    }
-    @keyframes successFadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes successPop {
-      0% { opacity: 0; transform: scale(0.4); }
-      60% { transform: scale(1.1); }
-      100% { opacity: 1; transform: scale(1); }
-    }
-
     @media (max-width: 560px) {
       .form-row { grid-template-columns: 1fr; }
     }
@@ -2108,19 +2044,8 @@
        נדבר על בית הספר שלכם, על מה שתרצו שהתלמידים ייקחו, ועל איך נבנה ביחד את הסדנה שתשרת אתכם בצורה הטובה ביותר.</p>
 
     <form class="form-card reveal reveal-d3" id="contactForm" action="https://formspree.io/f/mojbyvgp" method="POST">
-      <div class="form-success" id="formSuccess">
-        <div class="form-success-icon">
-          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M5 12.5l5 5L20 7.5"/>
-          </svg>
-        </div>
-        <h3>תודה רבה!</h3>
-        <p class="form-success-text">קיבלתי את הפנייה שלכם.<br>מחכה לשיחה איתכם בקרוב!</p>
-        <hr class="form-success-divider">
-        <p class="form-success-signature">יגל בר</p>
-      </div>
-
       <input type="hidden" name="_subject" value="פניה חדשה — סדנת יזמות מתוך משמעות">
+      <input type="hidden" name="_next" value="https://theleader-workshop.yagelbar.com/thank-you/">
 
       <div class="form-row">
         <div class="form-group">
@@ -2234,7 +2159,6 @@
   (function() {
     const form = document.getElementById('contactForm');
     if (!form) return;
-    const successEl = document.getElementById('formSuccess');
     const submitBtn = form.querySelector('.form-submit');
 
     form.addEventListener('submit', async (e) => {
@@ -2249,9 +2173,7 @@
           headers: { 'Accept': 'application/json' }
         });
         if (res.ok) {
-          form.querySelectorAll('.form-row, .form-submit, .form-note').forEach(el => el.style.display = 'none');
-          successEl.classList.add('show');
-          successEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          window.location.href = 'thank-you/';
         } else {
           throw new Error('שגיאה בשליחה');
         }
